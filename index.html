@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>tabling</title>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+		<style>
+			.body-container {
+				margin:0rem;
+				padding:0rem;
+				word-break:normal;
+				box-sizing:border-box;background-color:#ffffff;
+			}
+			.div-container {
+				margin:0rem;
+				padding:0rem;
+				border-radius:1rem;box-shadow:0rem 1rem 5rem 0rem rgba(29, 34, 97, 0.08);
+				border:0.1rem solid #E9ECF2;
+			}
+			.div-container-item {
+				margin:0rem;
+				padding:0.5rem;
+				border:0.1rem solid #E9ECF2;
+			}
+			.div-container-item-col {
+				height:30rem;
+				width:14.4rem;
+				margin:0rem;
+				padding:0.5rem;
+				display:inline-block;
+				border:0.1rem solid #E9ECF2;
+			}
+			.div-container-item-row {
+				height:30rem;
+				width:30rem;
+				margin:0rem;
+				padding:0.5rem;
+				display:inline-block;
+				border:0.1rem solid #E9ECF2;
+			}
+			.table-container {
+				margin:auto;
+				padding:0rem;
+				border:0.1rem solid #E9ECF2;
+				table-layout:fixed;
+				text-align:center;word-wrap:break-word;text-overflow:ellipsis;
+			}
+			.table-container-col-on {
+				height:90%;
+				width:100%;
+			}
+			.table-container-row-on {
+				height:45%;
+				width:100%;
+			}
+			.table-container-col-off {
+				height:100%;
+				width:100%;
+			}
+			.table-container-row-off {
+				height:50%;
+				width:100%;
+			}
+			td {
+				border:0.1rem solid #E9ECF2;
+			}
+			.td-use {
+			}
+			.td-use-m {
+				background-color:#C0FFFF;
+			}
+			.td-use-f {
+				background-color:#FFE3EE;
+			}
+			.td-not {
+				background-color:#dcdcdc;
+			}
+			.div-tooltip {
+				font-size:0.8rem;font-weight:400;color:#7E8CA0;
+			}
+			.div-tooltip-mtr {
+				font-size:0.8rem;font-weight:400;
+			}
+			.tr-tooltip {
+				font-size:0.8rem;font-weight:400;color:#7E8CA0;
+			}
+			.tr-tooltip-mtr {
+				font-size:0.8rem;font-weight:400;
+			}
+		</style>
+		<script type="text/javascript">
+			function fn_is_empty(value) {
+				if (value == null || value == "" || value == undefined) {
+					return true;
+				} else if (value != null && typeof value == "object" && !Object.keys(value).length) {
+					return true;
+				} else {
+					return false;
+				}
+			};
+			function fn_info() {
+				var totTbUsrCntArr = new Array();
+				var totFemaleArr = new Array();
+				var totMaleArr = new Array();
+				
+				var totFemaleUsrCnt = Number($("#totFemaleUsrCnt").val());
+				var totMaleUsrCnt = Number($("#totMaleUsrCnt").val());
+				
+				for (var i=1; i<=totFemaleUsrCnt; i++) {
+					totFemaleArr.push("F-" + i);
+				}
+				for (var i=1; i<=totMaleUsrCnt; i++) {
+					totMaleArr.push("M-" + i);
+				}
+				$("#totFemaleList").val(totFemaleArr);
+				$("#totMaleList").val(totMaleArr);
+				
+				var totUsrCnt = Number(totFemaleUsrCnt + totMaleUsrCnt);
+				var totTbCnt = Number($(".table-use").length);
+				var totMaxUsrPerTbCnt = Math.ceil(Number(totUsrCnt / totTbCnt));
+				
+				$(".table-use-col").html(fn_tmp(1, totMaxUsrPerTbCnt));
+				$(".table-use-row").html(fn_tmp(2, totMaxUsrPerTbCnt));
+				
+				var usrCnt = 0;
+				for (var i=1; i<=12; i++) {
+					$(".td-use-" + i).each(function() {
+						$(this).removeClass();
+						if (usrCnt >= totUsrCnt) {
+							$(this).attr("id", "");
+							$(this).addClass("td-not");
+							$(this).html("");
+						} else {
+							usrCnt++;
+							$(this).attr("id", "td-use-" + usrCnt);
+							$(this).addClass("td-use");
+							$(this).addClass("td-use-" + i);
+							$(this).append("<div class='div-tooltip'>i:" + i + "/" + "num:" + usrCnt + "</div>");
+						}
+					});
+				}
+				$(".table-use").each(function(idx1) {
+					$(this).attr("id", "table-use-" + idx1);
+					$(this).find(".td-sum").attr("id", "td-sum-" + idx1);
+					totTbUsrCntArr.push(Number($(this).find(".td-use").length));
+				});
+				
+				var tbFemaleUsrCnt = Math.floor(totFemaleUsrCnt / totTbCnt);
+				var tbMaleUsrCnt = Math.floor(totMaleUsrCnt / totTbCnt);
+				var tbFemaleRstCnt = (totFemaleUsrCnt - (tbFemaleUsrCnt * totTbCnt));
+				var tbMaleRstCnt = (totMaleUsrCnt - (tbMaleUsrCnt * totTbCnt));
+				
+				var femaleUsrCnt = 0;
+				var maleUsrCnt = 0;
+				
+				for (var i=0; i<totTbCnt; i++) {
+					$("#td-sum-" + i).each(function() {
+						var tbFemaleArr = new Array();
+						var tbMaleArr = new Array();
+						var totCnt = Number(totTbUsrCntArr[i]);
+						var rstCnt = Number(totCnt - tbFemaleUsrCnt - tbMaleUsrCnt);
+						var fCnt = Number(tbFemaleUsrCnt);
+						var mCnt = Number(tbMaleUsrCnt);
+						for (var x=femaleUsrCnt; x<Number(femaleUsrCnt + tbFemaleUsrCnt); x++) {
+							tbFemaleArr.push(totFemaleArr[x]);
+						}
+						for (var x=maleUsrCnt; x<Number(maleUsrCnt + tbMaleUsrCnt); x++) {
+							tbMaleArr.push(totMaleArr[x]);
+						}
+						femaleUsrCnt += fCnt;
+						maleUsrCnt += mCnt;
+						$(this).attr("totCnt", totCnt);
+						$(this).attr("rstCnt", rstCnt);
+						$(this).attr("fCnt", fCnt);
+						$(this).attr("mCnt", mCnt);
+						$(this).attr("tbFemaleArr", tbFemaleArr)
+						$(this).attr("tbMaleArr", tbMaleArr)
+					});
+				}
+				for (var i=0; i<totTbCnt; i++) {
+					$("#td-sum-" + i).each(function() {
+						var tbFemaleArr = new Array();
+						var tbMaleArr = new Array();
+						var totCnt = Number($(this).attr("totCnt"));
+						var rstCnt = Number($(this).attr("rstCnt"));
+						var fCnt = Number($(this).attr("fCnt"));
+						var mCnt = Number($(this).attr("mCnt"));
+						$($(this).attr("tbFemaleArr").split(",")).each(function(chldrIdx, chldrObj) {
+							if (fn_is_empty(chldrObj) == false) {
+								tbFemaleArr.push(chldrObj);
+							}
+						});
+						$($(this).attr("tbMaleArr").split(",")).each(function(chldrIdx, chldrObj) {
+							if (fn_is_empty(chldrObj) == false) {
+								tbMaleArr.push(chldrObj);
+							}
+						});
+						if (rstCnt == 1 && (tbFemaleRstCnt > 0 || tbMaleRstCnt > 0)) {
+							rstCnt--;
+							if (tbFemaleRstCnt > 0) {
+								tbFemaleRstCnt--;
+								fCnt++;
+								tbFemaleArr.push(totFemaleArr[femaleUsrCnt]);
+								femaleUsrCnt++;
+							} else {
+								tbMaleRstCnt--;
+								mCnt++;
+								tbMaleArr.push(totMaleArr[maleUsrCnt]);
+								maleUsrCnt++;
+							}
+							
+						}
+						$(this).attr("rstCnt", rstCnt);
+						$(this).attr("fCnt", fCnt);
+						$(this).attr("mCnt", mCnt);
+						$(this).attr("tbFemaleArr", tbFemaleArr)
+						$(this).attr("tbMaleArr", tbMaleArr)
+					});
+				}
+				for (var i=0; i<totTbCnt; i++) {
+					var tbFemaleArr = new Array();
+					var tbMaleArr = new Array();
+					var totCnt = 0;
+					var rstCnt = 0;
+					var fCnt = 0;
+					var mCnt = 0;
+					$("#td-sum-" + i).each(function() {
+						totCnt = Number($(this).attr("totCnt"));
+						rstCnt = Number($(this).attr("rstCnt"));
+						fCnt = Number($(this).attr("fCnt"));
+						mCnt = Number($(this).attr("mCnt"));
+						$($(this).attr("tbFemaleArr").split(",")).each(function(chldrIdx, chldrObj) {
+							if (fn_is_empty(chldrObj) == false) {
+								tbFemaleArr.push(chldrObj);
+							}
+						});
+						$($(this).attr("tbMaleArr").split(",")).each(function(chldrIdx, chldrObj) {
+							if (fn_is_empty(chldrObj) == false) {
+								tbMaleArr.push(chldrObj);
+							}
+						});
+						$(this).append("<div class='div-tooltip-mtr'>" + (i + 1) +"조</div>");
+						$(this).append("<div class='div-tooltip'>totCnt:" + totCnt + "/" + "rstCnt:" + rstCnt + "</div>");
+						$(this).append("<div class='div-tooltip'>fCnt:" + fCnt + "/" + "mCnt:" + mCnt + "</div>");
+						$(this).append("<div class='div-tooltip'>tbFemaleArr:" + tbFemaleArr + "</div>");
+						$(this).append("<div class='div-tooltip'>tbMaleArr:" + tbMaleArr + "</div>");
+					});
+					$("#table-use-" + i).each(function() {
+						var fIdx = 0;
+						var mIdx = 0;
+						var fRst = fCnt;
+						var mRst = mCnt;
+						var fDiff = (fCnt - mCnt);
+						var mDiff = (mCnt - fCnt);
+						for (var x=1; x<=totCnt; x++) {
+							var flag = true;
+							if (totCnt == fCnt) {
+								flag = false;
+							} else if (totCnt == mCnt) {
+							} else {
+								if (fCnt == mCnt) {
+									if (x % 2 != 0) {
+										flag = false;
+									}
+								} else if (totCnt == 7) {
+									if (fDiff > 0) {
+										if (fDiff == 5 && (x == 2)) {
+										} else if (fDiff == 3 && (x == 2 || x == 6)) {
+										} else if (fDiff == 1 && (x == 1 || x == 3 || x == 6)) {
+										} else {
+											flag = false;
+										}
+									} else {
+										if (fDiff == -5 && (x == 2)) {
+											flag = false;
+										} else if (fDiff == -3 && (x == 2 || x == 6)) {
+											flag = false;
+										} else if (fDiff == -1 && (x == 1 || x == 3 || x == 6)) {
+											flag = false;
+										}
+									}
+								} else if (totCnt == 8) {
+									if (fDiff > 0) {
+										if (fDiff == 6 && (x == 2)) {
+										} else if (fDiff == 4 && (x == 2 || x == 6)) {
+										} else if (fDiff == 2 && (x == 1 || x == 3 || x == 6)) {
+										} else {
+											flag = false;
+										}
+									} else {
+										if (fDiff == -6 && (x == 2)) {
+											flag = false;
+										} else if (fDiff == -4 && (x == 2 || x == 6)) {
+											flag = false;
+										} else if (fDiff == -2 && (x == 1 || x == 3 || x == 6)) {
+											flag = false;
+										}
+									}
+								} else if (totCnt == 9) {
+									if (fDiff > 0) {
+										if (fDiff == 7 && (x == 2)) {
+										} else if (fDiff == 5 && (x == 2 || x == 7)) {
+										} else if (fDiff == 3 && (x == 1 || x == 3 || x == 7)) {
+										} else if (fDiff == 1 && (x == 1 || x == 3 || x == 6 || x == 8)) {
+										} else {
+											flag = false;
+										}
+									} else {
+										if (fDiff == -7 && (x == 2)) {
+											flag = false;
+										} else if (fDiff == -5 && (x == 2 || x == 7)) {
+											flag = false;
+										} else if (fDiff == -3 && (x == 1 || x == 3 || x == 7)) {
+											flag = false;
+										} else if (fDiff == -1 && (x == 1 || x == 3 || x == 6 || x == 8)) {
+											flag = false;
+										}
+									}
+								} else if (totCnt == 10) {
+									if (fDiff > 0) {
+										if (fDiff == 8 && (x == 2)) {
+										} else if (fDiff == 6 && (x == 2 || x == 7)) {
+										} else if (fDiff == 4 && (x == 1 || x == 3 || x == 7)) {
+										} else if (fDiff == 2 && (x == 1 || x == 3 || x == 6 || x == 8)) {
+										} else {
+											flag = false;
+										}
+									} else {
+										if (fDiff == -8 && (x == 2)) {
+											flag = false;
+										} else if (fDiff == -6 && (x == 2 || x == 7)) {
+											flag = false;
+										} else if (fDiff == -4 && (x == 1 || x == 3 || x == 7)) {
+											flag = false;
+										} else if (fDiff == -2 && (x == 1 || x == 3 || x == 6 || x == 8)) {
+											flag = false;
+										}
+									}
+								} else if (totCnt == 11) {
+									if (fDiff > 0) {
+										if (fDiff == 9 && (x == 2)) {
+										} else if (fDiff == 7 && (x == 2 || x == 7)) {
+										} else if (fDiff == 5 && (x == 1 || x == 3 || x == 7)) {
+										} else if (fDiff == 3 && (x == 1 || x == 3 || x == 6 || x == 8)) {
+										} else if (fDiff == 1 && (x == 1 || x == 3 || x == 5 || x == 7 || x == 9)) {
+										} else {
+											flag = false;
+										}
+									} else {
+										if (fDiff == -9 && (x == 2)) {
+											flag = false;
+										} else if (fDiff == -7 && (x == 2 || x == 7)) {
+											flag = false;
+										} else if (fDiff == -5 && (x == 1 || x == 3 || x == 7)) {
+											flag = false;
+										} else if (fDiff == -3 && (x == 1 || x == 3 || x == 6 || x == 8)) {
+											flag = false;
+										} else if (fDiff == -1 && (x == 1 || x == 3 || x == 5 || x == 7 || x == 9)) {
+											flag = false;										
+										}
+									}
+								} else if (totCnt == 12) {
+									if (fDiff > 0) {
+										if (fDiff == 10 && (x == 2)) {
+										} else if (fDiff == 8 && (x == 2 || x == 7)) {
+										} else if (fDiff == 6 && (x == 1 || x == 3 || x == 7)) {
+										} else if (fDiff == 4 && (x == 1 || x == 3 || x == 6 || x == 8)) {
+										} else if (fDiff == 2 && (x == 1 || x == 3 || x == 5 || x == 7 || x == 9)) {
+										} else {
+											flag = false;
+										}
+									} else {
+										if (fDiff == -10 && (x == 2)) {
+											flag = false;
+										} else if (fDiff == -8 && (x == 2 || x == 7)) {
+											flag = false;
+										} else if (fDiff == -6 && (x == 1 || x == 3 || x == 7)) {
+											flag = false;
+										} else if (fDiff == -4 && (x == 1 || x == 3 || x == 6 || x == 8)) {
+											flag = false;
+										} else if (fDiff == -2 && (x == 1 || x == 3 || x == 5 || x == 7 || x == 9)) {
+											flag = false;										
+										}
+									}
+								}
+							}
+							if (flag == true) {
+								$(this).find(".td-use-" + x).addClass("td-use-m");
+								$(this).find(".td-use-" + x).append("<div class='div-tooltip-mtr'>" + tbMaleArr[mIdx] +"</div>");
+								mIdx++;
+								mRst--;
+							} else {
+								$(this).find(".td-use-" + x).addClass("td-use-f");
+								$(this).find(".td-use-" + x).append("<div class='div-tooltip-mtr'>" + tbFemaleArr[fIdx] +"</div>");
+								fIdx++;
+								fRst--;
+							}
+						}
+					});
+				}
+			};
+			function fn_tmp(tp, sz) {
+				var html01 = "<td class='td-use td-use-1'></td>";
+				var html02 = "<td class='td-use td-use-2'></td>";
+				var html03 = "<td class='td-use td-use-3'></td>";
+				var html04 = "<td class='td-use td-use-4'></td>";
+				var html05 = "<td class='td-use td-use-5'></td>";
+				var html06 = "<td class='td-use td-use-6'></td>";
+				var html07 = "<td class='td-use td-use-7'></td>";
+				var html08 = "<td class='td-use td-use-8'></td>";
+				var html09 = "<td class='td-use td-use-9'></td>";
+				var html10 = "<td class='td-use td-use-10'></td>";
+				var html11 = "<td class='td-use td-use-11'></td>";
+				var html12 = "<td class='td-use td-use-12'></td>";
+				
+				var html000 = "<td class='td-not'></td>";
+				var html013 = "<td class='td-not td-sum' colspan='1' rowspan='3'></td>";
+				var html023 = "<td class='td-not td-sum' colspan='2' rowspan='3'></td>";
+				var html031 = "<td class='td-not td-sum' colspan='3' rowspan='1'></td>";
+				var html032 = "<td class='td-not td-sum' colspan='3' rowspan='2'></td>";
+				
+				var html = "";
+				if (tp == 1) {
+					if (sz == 11 || sz == 12) {
+						html += "<tr>" + html11		+ html04	+ html05	+ html000	+ "</tr>";
+						html += "<tr>" + html03		+ html023	+ ""		+ html06	+ "</tr>";
+						html += "<tr>" + html02		+ ""		+ ""		+ html07	+ "</tr>";
+						html += "<tr>" + html01		+ ""		+ ""		+ html08	+ "</tr>";
+						html += "<tr>" + html000	+ html10	+ html09	+ html12	+ "</tr>";
+					} else if (sz == 9 || sz == 10) {
+						html += "<tr>" + html000	+ html04	+ html05	+ html000	+ "</tr>";
+						html += "<tr>" + html03		+ html023	+ ""		+ html06	+ "</tr>";
+						html += "<tr>" + html02		+ ""		+ ""		+ html07	+ "</tr>";
+						html += "<tr>" + html01		+ ""		+ ""		+ html08	+ "</tr>";
+						html += "<tr>" + html000	+ html10	+ html09	+ html000	+ "</tr>";
+					} else if (sz == 7 || sz == 8) {
+						html += "<tr>" + html000	+ html04	+ html000	+ "</tr>";
+						html += "<tr>" + html03		+ html013	+ html05	+ "</tr>";
+						html += "<tr>" + html02		+ ""		+ html06	+ "</tr>";
+						html += "<tr>" + html01		+ ""		+ html07	+ "</tr>";
+						html += "<tr>" + html000	+ html08	+ html000	+ "</tr>";
+					}
+				} else if (tp == 2) {
+					if (sz == 11 || sz == 12) {
+						html += "<tr>" + html000	+ html01	+ html02	+ html03	+ html11	+ "</tr>";
+						html += "<tr>" + html10		+ html032	+ ""		+ ""		+ html04	+ "</tr>";
+						html += "<tr>" + html09		+ ""		+ ""		+ ""		+ html05	+ "</tr>";
+						html += "<tr>" + html12		+ html08	+ html07	+ html06	+ html000	+ "</tr>";
+					} else if (sz == 9 || sz == 10) {
+						html += "<tr>" + html000	+ html01	+ html02	+ html03	+ html000	+ "</tr>";
+						html += "<tr>" + html10		+ html032	+ ""		+ ""		+ html04	+ "</tr>";
+						html += "<tr>" + html09		+ ""		+ ""		+ ""		+ html05	+ "</tr>";
+						html += "<tr>" + html000	+ html08	+ html07	+ html06	+ html000	+ "</tr>";
+					} else if (sz == 7 || sz == 8) {
+						html += "<tr>" + html000	+ html01	+ html02	+ html03	+ html000	+ "</tr>";
+						html += "<tr>" + html08		+ html031	+ ""		+ ""		+ html04	+ "</tr>";
+						html += "<tr>" + html000	+ html07	+ html06	+ html05	+ html000	+ "</tr>";
+					}
+				}
+				return html;
+			};
+			function fn_info_display() {
+				var tp = $("input:radio[name='btn-mtr']:checked").val();
+				$("button").each(function() {
+					if ($(this).hasClass("btn-mtr") == false) {
+						if (tp == 1) {
+							$(this).css("display", "");
+							$(".table-container-col").removeClass("table-container-col-off");
+							$(".table-container-col").addClass("table-container-col-on");
+							$(".table-container-row").removeClass("table-container-row-off");
+							$(".table-container-row").addClass("table-container-row-on");
+						} else {
+							$(this).css("display", "none");
+							$(".table-container-col").removeClass("table-container-col-on");
+							$(".table-container-col").addClass("table-container-col-off");
+							$(".table-container-row").removeClass("table-container-row-on");
+							$(".table-container-row").addClass("table-container-row-off");
+						}
+					}
+				});
+				$(".div-tooltip").each(function() {
+					if (tp == 1) {
+						$(this).css("display", "");
+					} else {
+						$(this).css("display", "none");
+					}
+				});
+				$(".tr-tooltip").each(function() {
+					if (tp == 1) {
+						$(this).css("display", "");
+					} else {
+						$(this).css("display", "none");
+					}
+				});
+			};
+		</script>
+		<script type="text/javascript">
+			function fn_div_container_add() {
+				var html = "";
+				html += "<div class='div-tooltip div-container-item-del'>";
+				html += "	<button type='button' class='btn-container-del'></button>";
+				html += "</div>";
+				html += "<div class='div-tooltip div-container-item-add'>";
+				html += "	<button type='button' class='btn-container-add-1'></button>";
+				html += "	<button type='button' class='btn-container-add-2'></button>";
+				html += "	<button type='button' class='btn-container-add-3'></button>";
+				html += "	<button type='button' class='btn-container-add-4'></button><br/>";
+				html += "	<input type='text' class='text-container-add'/>";
+				html += "	<button type='button' class='btn-container-add-5'></button>";
+				html += "	<button type='button' class='btn-container-add-6'></button>";
+				html += "	<button type='button' class='btn-container-add-7'></button>";
+				html += "</div>";
+				html += "<div class='div-container-item'>"; 
+				html += "</div>";
+				$("#div-container").append(html);
+				fn_div_container_reset();
+			};
+			function fn_div_container_del(pkIdx) {
+				$("#div-container-item--" + pkIdx).remove();
+				$("#div-container-item-del--" + pkIdx).remove();
+				$("#div-container-item-add--" + pkIdx).remove();
+				fn_div_container_reset();
+			};
+			function fn_div_container_reset() {
+				$(".div-container-item").each(function(pkIdx) {
+					$(this).attr("id", "div-container-item--" + pkIdx);
+				});
+				$(".div-container-item-del").each(function(pkIdx) {
+					$(this).attr("id", "div-container-item-del--" + pkIdx);
+				});
+				$(".div-container-item-add").each(function(pkIdx) {
+					$(this).attr("id", "div-container-item-add--" + pkIdx);
+				});
+				$(".btn-container-del").each(function(pkIdx) {
+					$(this).attr("onclick", "fn_div_container_del(" + pkIdx + ");");
+					$(this).text("[" + pkIdx + "] 행 삭제");
+				});
+				$(".text-container-add").each(function(pkIdx) {
+					$(this).attr("id", "text-container-add--" + pkIdx);
+				});
+				for (var i=1; i<=7; i++) {
+					$(".btn-container-add-" + i).each(function(pkIdx) {
+						$(this).attr("onclick", "fn_div_container_item_add(" + i + ", " + pkIdx + ");");
+						var html = "";
+						if (i == 1) {
+							html += "[" + pkIdx + "] 행 세로 열 추가";
+						} else if (i == 2) {
+							html += "[" + pkIdx + "] 행 가로 상단/하단 열 추가";
+						} else if (i == 3) {
+							html += "[" + pkIdx + "] 행 가로 상단 열 추가";
+						} else if (i == 4) {
+							html += "[" + pkIdx + "] 행 가로 하단 열 추가";
+						} else if (i == 5) {
+							html += "[" + pkIdx + "] 행 공백 세로 열 추가";
+						} else if (i == 6) {
+							html += "[" + pkIdx + "] 행 공백 가로 상단 열 추가";
+						} else if (i == 7) {
+							html += "[" + pkIdx + "] 행 공백 가로 하단 열 추가";
+						}
+						$(this).html(html);
+					});
+				}
+				fn_info_display();
+			};
+		</script>
+		<script type="text/javascript">
+			function fn_div_container_item_add(tp, prntIdx) {
+				var html01 = "<button type='button' class='btn-div-container-item-table-del--" + prntIdx + " btn-div-container-item-table-del'>[" + prntIdx + "] 열 삭제</button>";
+				
+				var html = "";
+				var txt = $("#text-container-add--" + prntIdx).val();
+				$("#text-container-add--" + prntIdx).val("");
+				
+				if (tp == 1 || tp == 5) {
+					html += "<div class='div-container-item--" + prntIdx + " div-container-item-col'>";
+					html += html01;
+					html += "	<table class='table-container table-container-col--" + prntIdx + " table-container-col'>";
+					if (tp == 1) {
+					html += "		<tbody class='table-use table-use-col'></tbody>";
+					} else if (tp == 5 && fn_is_empty(txt) == false) {
+					html += "		<tbody class='table-txt table-txt-col'><tr><td>" + txt + "</td></tr></tbody>";	
+					}
+					html += "	</table>";
+					html += "</div>";
+				} else if (tp == 2 || tp == 3 || tp == 4 || tp == 6 || tp == 7) {
+					html += "<div class='div-container-item--" + prntIdx + " div-container-item-row'>";
+					html += html01;
+					html += "	<table class='table-container table-container-row--" + prntIdx + " table-container-row'>";
+					if (tp == 2 || tp == 3) {
+					html += "		<tbody class='table-use table-use-row'></tbody>";
+					} else if ((tp == 4 || tp == 6) && fn_is_empty(txt) == false) {
+					html += "		<tbody class='table-txt table-txt-col'><tr><td>" + txt + "</td></tr></tbody>";	
+					}
+					html += "	</table>";
+					html += "	<table class='table-container table-container-row--" + prntIdx + " table-container-row'>";
+					if (tp == 2 || tp == 4) {
+					html += "		<tbody class='table-use table-use-row'></tbody>";
+					} else if ((tp == 3 || tp == 7) && fn_is_empty(txt) == false) {
+					html += "		<tbody class='table-txt table-txt-col'><tr><td>" + txt + "</td></tr></tbody>";	
+					}
+					html += "	</table>";
+					html += "</div>";
+				}
+				$("#div-container-item--" + prntIdx).append(html);
+				fn_div_container_item_reset(prntIdx);
+			};
+			function fn_div_container_item_del(prntIdx, pkIdx) {
+				$("#div-container-item--" + prntIdx + "--" + pkIdx).remove();
+				fn_div_container_item_reset(prntIdx);
+			};
+			function fn_div_container_item_reset(prntIdx) {
+				$(".div-container-item--" + prntIdx).each(function(pkIdx) {
+					$(this).attr("id", "div-container-item--" + prntIdx + "--" + pkIdx);
+				});
+				$(".btn-div-container-item-table-del--" + prntIdx).each(function(pkIdx) {
+					$(this).attr("onclick", "fn_div_container_item_del(" + prntIdx + "," + pkIdx + ");");
+				});
+				fn_info_display();
+				fn_info();
+			};
+		</script>
+	</head>
+	<body class="body-container">
+		<section class="section-container">
+			<div>
+				<table>
+					<tbody>
+						<tr class="tr-tooltip-mtr">
+							<th><button type="button" class="btn-mtr" onclick="javascript:fn_div_container_add();">행 추가</button></th>
+							<td><input type="radio" name="btn-mtr" value="1" onclick="fn_info_display();" checked>툴팁 노출<input type="radio" name="btn-mtr" value="2" onclick="fn_info_display();">툴팁 숨김</td>
+						</tr>
+						<tr class="tr-tooltip">
+							<th>totFemaleUsrCnt</th>
+							<td><input type="text" id="totFemaleUsrCnt" value="30" onkeyup="fn_info();"/></td>
+						</tr>
+						<tr class="tr-tooltip">
+							<th>totMaleUsrCnt</th>
+							<td><input type="text" id="totMaleUsrCnt" value="30" onkeyup="fn_info();"/></td>
+						</tr>
+						<tr class="tr-tooltip">
+							<th>totFemaleList</th>
+							<td><textarea id="totFemaleList" readonly></textarea></td>
+						</tr>
+						<tr class="tr-tooltip">
+							<th>totMaleList</th>
+							<td><textarea id="totMaleList" readonly></textarea></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="div-container" class="div-container"></div>
+		</section>
+	</body>
+</html>
