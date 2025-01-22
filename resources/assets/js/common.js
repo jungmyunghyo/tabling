@@ -352,10 +352,9 @@ function fn_tmp(tp, sz) {
 	return html;
 };
 function fn_info_display() {
-	var tp = $("input:radio[name='btn-mtr']:checked").val();
 	$("button").each(function() {
 		if ($(this).hasClass("btn-mtr") == false) {
-			if (tp == 1) {
+			if ($("#tooltip-radio").prop("checked") == true) {
 				$(this).css("display", "");
 				$(".table-container-col").removeClass("table-container-col-off");
 				$(".table-container-col").addClass("table-container-col-on");
@@ -371,14 +370,14 @@ function fn_info_display() {
 		}
 	});
 	$(".div-tooltip").each(function() {
-		if (tp == 1) {
+		if ($("#tooltip-radio").prop("checked") == true) {
 			$(this).css("display", "");
 		} else {
 			$(this).css("display", "none");
 		}
 	});
 	$(".tr-tooltip").each(function() {
-		if (tp == 1) {
+		if ($("#tooltip-radio").prop("checked") == true) {
 			$(this).css("display", "");
 		} else {
 			$(this).css("display", "none");
@@ -387,18 +386,17 @@ function fn_info_display() {
 };
 function fn_div_container_add() {
 	var html = "";
-	html += "<div class='div-tooltip div-container-item-del'>";
-	html += "	<button type='button' class='btn-container-del'></button>";
-	html += "</div>";
-	html += "<div class='div-tooltip div-container-item-add'>";
-	html += "	<button type='button' class='btn-container-add-1'></button>";
-	html += "	<button type='button' class='btn-container-add-2'></button>";
-	html += "	<button type='button' class='btn-container-add-3'></button>";
-	html += "	<button type='button' class='btn-container-add-4'></button><br/>";
-	html += "	<input type='text' class='text-container-add'/>";
-	html += "	<button type='button' class='btn-container-add-5'></button>";
-	html += "	<button type='button' class='btn-container-add-6'></button>";
-	html += "	<button type='button' class='btn-container-add-7'></button>";
+	html += "<div class='div-setting-item div-tooltip div-container-item-btn'>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-del'><img src='resources/assets/img/ico_btn_remove.png'/>삭제</button></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-1'><img src='resources/assets/img/ico_btn_add.png'/>세로</button></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-2'><img src='resources/assets/img/ico_btn_add.png'/>상하</button></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-3'><img src='resources/assets/img/ico_btn_add.png'/>상단</button></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-4'><img src='resources/assets/img/ico_btn_add.png'/>하단</button></span>";
+	html += "	<span class='span-label-form'><input type='text' class='text-container-add'/></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-5'><img src='resources/assets/img/ico_btn_add.png'/>공백세로</button></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-6'><img src='resources/assets/img/ico_btn_add.png'/>공백상하</button></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-7'><img src='resources/assets/img/ico_btn_add.png'/>공백상단</button></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-8'><img src='resources/assets/img/ico_btn_add.png'/>공백하단</button></span>";
 	html += "</div>";
 	html += "<div class='div-container-item'>"; 
 	html += "</div>";
@@ -407,23 +405,18 @@ function fn_div_container_add() {
 };
 function fn_div_container_del(pkIdx) {
 	$("#div-container-item--" + pkIdx).remove();
-	$("#div-container-item-del--" + pkIdx).remove();
-	$("#div-container-item-add--" + pkIdx).remove();
+	$("#div-container-item-btn--" + pkIdx).remove();
 	fn_div_container_reset();
 };
 function fn_div_container_reset() {
 	$(".div-container-item").each(function(pkIdx) {
 		$(this).attr("id", "div-container-item--" + pkIdx);
 	});
-	$(".div-container-item-del").each(function(pkIdx) {
-		$(this).attr("id", "div-container-item-del--" + pkIdx);
-	});
-	$(".div-container-item-add").each(function(pkIdx) {
-		$(this).attr("id", "div-container-item-add--" + pkIdx);
+	$(".div-container-item-btn").each(function(pkIdx) {
+		$(this).attr("id", "div-container-item-btn--" + pkIdx);
 	});
 	$(".btn-container-del").each(function(pkIdx) {
 		$(this).attr("onclick", "fn_div_container_del(" + pkIdx + ");");
-		$(this).text("[" + pkIdx + "] 행 삭제");
 	});
 	$(".text-container-add").each(function(pkIdx) {
 		$(this).attr("id", "text-container-add--" + pkIdx);
@@ -431,29 +424,12 @@ function fn_div_container_reset() {
 	for (var i=1; i<=7; i++) {
 		$(".btn-container-add-" + i).each(function(pkIdx) {
 			$(this).attr("onclick", "fn_div_container_item_add(" + i + ", " + pkIdx + ");");
-			var html = "";
-			if (i == 1) {
-				html += "[" + pkIdx + "] 행 세로 열 추가";
-			} else if (i == 2) {
-				html += "[" + pkIdx + "] 행 가로 상단/하단 열 추가";
-			} else if (i == 3) {
-				html += "[" + pkIdx + "] 행 가로 상단 열 추가";
-			} else if (i == 4) {
-				html += "[" + pkIdx + "] 행 가로 하단 열 추가";
-			} else if (i == 5) {
-				html += "[" + pkIdx + "] 행 공백 세로 열 추가";
-			} else if (i == 6) {
-				html += "[" + pkIdx + "] 행 공백 가로 상단 열 추가";
-			} else if (i == 7) {
-				html += "[" + pkIdx + "] 행 공백 가로 하단 열 추가";
-			}
-			$(this).html(html);
 		});
 	}
 	fn_info_display();
 };
 function fn_div_container_item_add(tp, prntIdx) {
-	var html01 = "<button type='button' class='btn-div-container-item-table-del--" + prntIdx + " btn-div-container-item-table-del'>[" + prntIdx + "] 열 삭제</button>";
+	var html01 = "<div class='div-setting-item div-tooltip'><span class='span-label-button'><button type='button' class='btn-div-container-item-table-del--" + prntIdx + " btn-div-container-item-table-del'><img src='resources/assets/img/ico_btn_remove.png'/>삭제</button></span></div>";
 	
 	var html = "";
 	var txt = $("#text-container-add--" + prntIdx).val();

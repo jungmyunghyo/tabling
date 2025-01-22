@@ -10,29 +10,26 @@
 	</head>
 	<body class="body-container">
 		<section class="section-container">
-			<div>
-				<table>
-					<tbody>
-						<tr class="tr-tooltip-mtr">
-							<th><button type="button" class="btn-mtr" onclick="javascript:fn_div_container_add();">행 추가</button></th>
-							<td><input type="radio" name="btn-mtr" value="1" onclick="fn_info_display();" checked>툴팁 노출<input type="radio" name="btn-mtr" value="2" onclick="fn_info_display();">툴팁 숨김</td>
-							<th></th>
-							<td></td>
-						</tr>
-						<tr class="tr-tooltip">
-							<th>totFemaleUsrCnt</th>
-							<td><input type="text" id="totFemaleUsrCnt" value="25" onkeyup="fn_info_cnt();"/></td>
-							<th>totFemaleList</th>
-							<td><div id="totFemaleListTxt"></div></td>
-						</tr>
-						<tr class="tr-tooltip">
-							<th>totMaleUsrCnt</th>
-							<td><input type="text" id="totMaleUsrCnt" value="35" onkeyup="fn_info_cnt();"/></td>
-							<th>totMaleList</th>
-							<td><div id="totMaleListTxt"></div></td>
-						</tr>
-					</tbody>
-				</table>
+			<div class="div-setting-container">
+				<div class="div-setting-item div-tooltip-mtr">
+					<input type="checkbox" id="tooltip-radio" onclick="fn_info_display();" checked/>
+					<label class="label-radio" for="tooltip-radio"></label>
+					<span class="span-label-button"><button type="button" onclick="fn_div_container_add();"><img src="resources/assets/img/ico_btn_add.png"/>추가</button></span>
+				</div>
+				<div class="div-setting-item div-tooltip">
+					<span class="span-label-title">여자수</span>
+					<span class="span-label-form"><input type="text" id="totFemaleUsrCnt" value="25" maxlength="2" onkeyup="fn_info_cnt();" onchange="fn_info_cnt();"/></span>
+					<span class="span-label-title">남자수</span>
+					<span class="span-label-form"><input type="text" id="totMaleUsrCnt" value="35" maxlength="2" onkeyup="fn_info_cnt();" onchange="fn_info_cnt();"/></span>
+				</div>
+			</div>
+			<div class="div-setting-container div-tooltip">
+				<span class="span-label-title">여자</span>
+				<span id="totFemaleListTxt" class="span-label-value"></span>
+			</div>
+			<div class="div-setting-container div-tooltip">
+				<span class="span-label-title">남자</span>
+				<span id="totMaleListTxt" class="span-label-value"></span>
 			</div>
 			<div id="div-container" class="div-container"></div>
 		</section>
