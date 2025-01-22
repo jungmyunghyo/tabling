@@ -44,7 +44,7 @@ function fn_info_cnt() {
 				$(this).attr("id", "td-use-" + usrCnt);
 				$(this).addClass("td-use");
 				$(this).addClass("td-use-" + i);
-				$(this).append("<div class='div-tooltip'>i:" + i + "/" + "num:" + usrCnt + "</div>");
+				$(this).append("<div class='div-tooltip f6-g'>i:" + i + "/" + "n:" + usrCnt + "</div>");
 			}
 		});
 	}
@@ -158,11 +158,11 @@ function fn_info_cnt() {
 					tbMaleArr.push(chldrObj);
 				}
 			});
-			$(this).append("<div class='div-tooltip-mtr'>" + (i + 1) +"조</div>");
-			$(this).append("<div class='div-tooltip'>totCnt:" + totCnt + "/" + "rstCnt:" + rstCnt + "</div>");
-			$(this).append("<div class='div-tooltip'>fCnt:" + fCnt + "/" + "mCnt:" + mCnt + "</div>");
-			$(this).append("<div class='div-tooltip'>tbFemaleArr:" + tbFemaleArr + "</div>");
-			$(this).append("<div class='div-tooltip'>tbMaleArr:" + tbMaleArr + "</div>");
+			$(this).append("<div class='div-tooltip-mtr f10'>" + (i + 1) +"조</div>");
+			$(this).append("<div class='div-tooltip f6-g'>tCnt:" + totCnt + "/" + "rCnt:" + rstCnt + "</div>");
+			$(this).append("<div class='div-tooltip f6-g'>fCnt:" + fCnt + "/" + "mCnt:" + mCnt + "</div>");
+			$(this).append("<div class='div-tooltip f5-g'>fArr:" + tbFemaleArr + "</div>");
+			$(this).append("<div class='div-tooltip f5-g'>mArr:" + tbMaleArr + "</div>");
 		});
 		$("#table-use-" + i).each(function() {
 			var fIdx = 0;
@@ -278,12 +278,12 @@ function fn_info_cnt() {
 				}
 				if (flag == true) {
 					$(this).find(".td-use-" + x).addClass("td-use-m");
-					$(this).find(".td-use-" + x).append("<div class='div-tooltip-mtr'>" + tbMaleArr[mIdx] +"</div>");
+					$(this).find(".td-use-" + x).append("<div class='div-tooltip-mtr f6'>" + tbMaleArr[mIdx] +"</div>");
 					mIdx++;
 					mRst--;
 				} else {
 					$(this).find(".td-use-" + x).addClass("td-use-f");
-					$(this).find(".td-use-" + x).append("<div class='div-tooltip-mtr'>" + tbFemaleArr[fIdx] +"</div>");
+					$(this).find(".td-use-" + x).append("<div class='div-tooltip-mtr f6'>" + tbFemaleArr[fIdx] +"</div>");
 					fIdx++;
 					fRst--;
 				}
@@ -353,30 +353,21 @@ function fn_tmp(tp, sz) {
 };
 function fn_info_display() {
 	$("button").each(function() {
-		if ($(this).hasClass("btn-mtr") == false) {
-			if ($("#tooltip-radio").prop("checked") == true) {
-				$(this).css("display", "");
-				$(".table-container-col").removeClass("table-container-col-off");
-				$(".table-container-col").addClass("table-container-col-on");
-				$(".table-container-row").removeClass("table-container-row-off");
-				$(".table-container-row").addClass("table-container-row-on");
-			} else {
-				$(this).css("display", "none");
-				$(".table-container-col").removeClass("table-container-col-on");
-				$(".table-container-col").addClass("table-container-col-off");
-				$(".table-container-row").removeClass("table-container-row-on");
-				$(".table-container-row").addClass("table-container-row-off");
-			}
+		if ($("#tooltip-radio").prop("checked") == true) {
+			$(this).css("display", "");
+			$(".table-container-col").removeClass("table-container-col-off");
+			$(".table-container-col").addClass("table-container-col-on");
+			$(".table-container-row").removeClass("table-container-row-off");
+			$(".table-container-row").addClass("table-container-row-on");
+		} else {
+			$(this).css("display", "none");
+			$(".table-container-col").removeClass("table-container-col-on");
+			$(".table-container-col").addClass("table-container-col-off");
+			$(".table-container-row").removeClass("table-container-row-on");
+			$(".table-container-row").addClass("table-container-row-off");
 		}
 	});
 	$(".div-tooltip").each(function() {
-		if ($("#tooltip-radio").prop("checked") == true) {
-			$(this).css("display", "");
-		} else {
-			$(this).css("display", "none");
-		}
-	});
-	$(".tr-tooltip").each(function() {
 		if ($("#tooltip-radio").prop("checked") == true) {
 			$(this).css("display", "");
 		} else {
@@ -387,16 +378,17 @@ function fn_info_display() {
 function fn_div_container_add() {
 	var html = "";
 	html += "<div class='div-setting-item div-tooltip div-container-item-btn'>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-del'><img src='resources/assets/img/ico_btn_remove.png'/>삭제</button></span>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-1'><img src='resources/assets/img/ico_btn_add.png'/>세로</button></span>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-2'><img src='resources/assets/img/ico_btn_add.png'/>상하</button></span>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-3'><img src='resources/assets/img/ico_btn_add.png'/>상단</button></span>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-4'><img src='resources/assets/img/ico_btn_add.png'/>하단</button></span>";
-	html += "	<span class='span-label-form'><input type='text' class='text-container-add'/></span>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-5'><img src='resources/assets/img/ico_btn_add.png'/>공백세로</button></span>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-6'><img src='resources/assets/img/ico_btn_add.png'/>공백상하</button></span>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-7'><img src='resources/assets/img/ico_btn_add.png'/>공백상단</button></span>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-8'><img src='resources/assets/img/ico_btn_add.png'/>공백하단</button></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-del f5'><img src='resources/assets/img/ico_btn_remove.png'/>삭제</button></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-1 f5'><img src='resources/assets/img/ico_btn_add.png'/>세로</button></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-2 f5'><img src='resources/assets/img/ico_btn_add.png'/>상하</button></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-3 f5'><img src='resources/assets/img/ico_btn_add.png'/>상단</button></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-4 f5'><img src='resources/assets/img/ico_btn_add.png'/>하단</button></span>";
+	html += "	<span class='span-label-title f10'>주석</span>";
+	html += "	<span class='span-label-form'><input type='text' class='text-container-add f10'/></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-5 f5'><img src='resources/assets/img/ico_btn_add.png'/>공백세로</button></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-6 f5'><img src='resources/assets/img/ico_btn_add.png'/>공백상하</button></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-7 f5'><img src='resources/assets/img/ico_btn_add.png'/>공백상단</button></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-8 f5'><img src='resources/assets/img/ico_btn_add.png'/>공백하단</button></span>";
 	html += "</div>";
 	html += "<div class='div-container-item'>"; 
 	html += "</div>";
@@ -429,7 +421,7 @@ function fn_div_container_reset() {
 	fn_info_display();
 };
 function fn_div_container_item_add(tp, prntIdx) {
-	var html01 = "<div class='div-setting-item div-tooltip'><span class='span-label-button'><button type='button' class='btn-div-container-item-table-del--" + prntIdx + " btn-div-container-item-table-del'><img src='resources/assets/img/ico_btn_remove.png'/>삭제</button></span></div>";
+	var html01 = "<div class='div-setting-item div-tooltip'><span class='span-label-button'><button type='button' class='btn-div-container-item-table-del--" + prntIdx + " btn-div-container-item-table-del f5'><img src='resources/assets/img/ico_btn_remove.png'/>삭제</button></span></div>";
 	
 	var html = "";
 	var txt = $("#text-container-add--" + prntIdx).val();
