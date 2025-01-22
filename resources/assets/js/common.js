@@ -428,7 +428,7 @@ function fn_div_container_item_add(tp, prntIdx) {
 	$("#text-container-add--" + prntIdx).val("");
 	
 	if (tp == 1 || tp == 5) {
-		html += "<div class='div-container-item--" + prntIdx + " div-container-item-col'>";
+		html += "<div class='div-container-item--" + prntIdx + " div-container-item-col div-container-item-col--m'>";
 		html += html01;
 		html += "	<table class='table-container table-container-col--" + prntIdx + " table-container-col'>";
 		if (tp == 1) {
@@ -439,7 +439,7 @@ function fn_div_container_item_add(tp, prntIdx) {
 		html += "	</table>";
 		html += "</div>";
 	} else if (tp == 2 || tp == 3 || tp == 4 || tp == 6 || tp == 7) {
-		html += "<div class='div-container-item--" + prntIdx + " div-container-item-row'>";
+		html += "<div class='div-container-item--" + prntIdx + " div-container-item-row div-container-item-row--m'>";
 		html += html01;
 		html += "	<table class='table-container table-container-row--" + prntIdx + " table-container-row'>";
 		if (tp == 2 || tp == 3) {
