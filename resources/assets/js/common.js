@@ -140,12 +140,10 @@ function fn_info_cnt() {
 		var tbFemaleArr = new Array();
 		var tbMaleArr = new Array();
 		var totCnt = 0;
-		var rstCnt = 0;
 		var fCnt = 0;
 		var mCnt = 0;
 		$("#td-sum-" + i).each(function() {
 			totCnt = Number($(this).attr("totCnt"));
-			rstCnt = Number($(this).attr("rstCnt"));
 			fCnt = Number($(this).attr("fCnt"));
 			mCnt = Number($(this).attr("mCnt"));
 			$($(this).attr("tbFemaleArr").split(",")).each(function(chldrIdx, chldrObj) {
@@ -159,7 +157,7 @@ function fn_info_cnt() {
 				}
 			});
 			$(this).append("<div class='div-tooltip-mtr f10'>" + (i + 1) +"조</div>");
-			$(this).append("<div class='div-tooltip f6-g'>tCnt:" + totCnt + "/" + "rCnt:" + rstCnt + "</div>");
+			$(this).append("<div class='div-tooltip f6-g'>tCnt:" + totCnt + "/" + "rCnt:" + Number($(this).attr("rstCnt")) + "</div>");
 			$(this).append("<div class='div-tooltip f6-g'>fCnt:" + fCnt + "/" + "mCnt:" + mCnt + "</div>");
 			$(this).append("<div class='div-tooltip f5-g'>fArr:" + tbFemaleArr + "</div>");
 			$(this).append("<div class='div-tooltip f5-g'>mArr:" + tbMaleArr + "</div>");
@@ -167,125 +165,15 @@ function fn_info_cnt() {
 		$("#table-use-" + i).each(function() {
 			var fIdx = 0;
 			var mIdx = 0;
-			var fRst = fCnt;
-			var mRst = mCnt;
-			var fDiff = (fCnt - mCnt);
-			var mDiff = (mCnt - fCnt);
 			for (var x=1; x<=totCnt; x++) {
-				var flag = true;
-				if (totCnt == fCnt) {
-					flag = false;
-				} else if (totCnt == mCnt) {
-				} else if (fCnt == 1 && x == 2) {
-					flag = false;
-				} else if (mCnt == 1 && x != 2) {
-					flag = false;
-				} else if (fCnt == mCnt && x % 2 != 0) {
-					flag = false;
-				} else if (fCnt == mCnt && x % 2 == 0) {
-				} else {
-					if (totCnt == 6) {
-						if (fCnt == 2 && (x == 2 || x == 5)) {
-							flag = false;
-						} else if (fCnt == 4 && (x != 2 && x != 5)) {
-							flag = false;
-						}
-					} else if (totCnt == 7) {
-						if (fCnt == 2 && (x == 2 || x == 5)) {
-							flag = false;
-						} else if (fCnt == 3 && (x == 2 || x == 4 || x == 6)) {
-							flag = false;
-						} else if (fCnt == 4 && (x != 2 && x != 4 && x != 6)) {
-							flag = false;
-						} else if (fCnt == 5 && (x != 2 && x != 5)) {
-							flag = false;
-						}
-					} else if (totCnt == 8) {
-						if (fCnt == 2 && (x == 2 || x == 6)) {
-							flag = false;
-						} else if (fCnt == 3 && (x == 2 || x == 5 || x == 7)) {
-							flag = false;
-						} else if (fCnt == 5 && (x != 2 && x != 5 && x != 7)) {
-							flag = false;
-						} else if (fCnt == 6 && (x != 2 && x != 6)) {
-							flag = false;
-						}
-					} else if (totCnt == 9) {
-						if (fCnt == 2 && (x == 2 || x == 7)) {
-							flag = false;
-						} else if (fCnt == 3 && (x == 2 || x == 5 || x == 8)) {
-							flag = false;
-						} else if (fCnt == 4 && (x == 1 || x == 3 || x == 6 || x == 8)) {
-							flag = false;
-						} else if (fCnt == 5 && (x != 1 && x != 3 && x != 6 && x != 8)) {
-							flag = false;
-						} else if (fCnt == 6 && (x != 2 && x != 5 && x != 8)) {
-							flag = false;
-						} else if (fCnt == 7 && (x != 2 && x != 7)) {
-							flag = false;
-						}
-					} else if (totCnt == 10) {
-						if (fCnt == 2 && (x == 2 || x == 7)) {
-							flag = false;
-						} else if (fCnt == 3 && (x == 2 || x == 5 || x == 8)) {
-							flag = false;
-						} else if (fCnt == 4 && (x == 1 || x == 3 || x == 6 || x == 8)) {
-							flag = false;
-						} else if (fCnt == 6 && (x != 1 && x != 3 && x != 6 && x != 8)) {
-							flag = false;
-						} else if (fCnt == 7 && (x != 2 && x != 5 && x != 8)) {
-							flag = false;
-						} else if (fCnt == 8 && (x != 2 && x != 7)) {
-							flag = false;
-						}
-					} else if (totCnt == 11) {
-						if (fCnt == 2 && (x == 2 || x == 7)) {
-							flag = false;
-						} else if (fCnt == 3 && (x == 2 || x == 5 || x == 8)) {
-							flag = false;
-						} else if (fCnt == 4 && (x == 1 || x == 3 || x == 5 || x == 8)) {
-							flag = false;
-						} else if (fCnt == 5 && (x == 1 || x == 3 || x == 4 || x == 6 || x == 8)) {
-							flag = false;
-						} else if (fCnt == 6 && (x != 1 && x != 3 && x != 4 && x != 6 && x != 8)) {
-							flag = false;
-						} else if (fCnt == 7 && (x != 1 && x != 3 && x != 5 && x != 8)) {
-							flag = false;
-						} else if (fCnt == 8 && (x != 2 && x != 5 && x != 8)) {
-							flag = false;
-						} else if (fCnt == 9 && (x != 2 && x != 7)) {
-							flag = false;
-						}
-					} else if (totCnt == 12) {
-						if (fCnt == 2 && (x == 2 || x == 7)) {
-							flag = false;
-						} else if (fCnt == 3 && (x == 1 || x == 4 || x == 8)) {
-							flag = false;
-						} else if (fCnt == 4 && (x == 2 || x == 4 || x == 7 || x == 9)) {
-							flag = false;
-						} else if (fCnt == 5 && (x == 1 || x == 3 || x == 5 || x == 7 || x == 9)) {
-							flag = false;
-						} else if (fCnt == 7 && (x != 1 && x != 3 && x != 5 && x != 7 && x != 9)) {
-							flag = false;
-						} else if (fCnt == 8 && (x != 2 && x != 4 && x != 7 && x != 9)) {
-							flag = false;
-						} else if (fCnt == 9 && (x != 1 && x != 4 && x != 8)) {
-							flag = false;
-						} else if (fCnt == 10 && (x != 2 && x != 7)) {
-							flag = false;
-						}
-					}
-				}
-				if (flag == true) {
+				if (fn_position_flag(totCnt, fCnt, mCnt, x) == true) {
 					$(this).find(".td-use-" + x).addClass("td-use-m");
 					$(this).find(".td-use-" + x).append("<div class='div-tooltip-mtr f6'>" + tbMaleArr[mIdx] +"</div>");
 					mIdx++;
-					mRst--;
 				} else {
 					$(this).find(".td-use-" + x).addClass("td-use-f");
 					$(this).find(".td-use-" + x).append("<div class='div-tooltip-mtr f6'>" + tbFemaleArr[fIdx] +"</div>");
 					fIdx++;
-					fRst--;
 				}
 			}
 		});
@@ -355,16 +243,8 @@ function fn_info_display() {
 	$("button").each(function() {
 		if ($("#tooltip-radio").prop("checked") == true) {
 			$(this).css("display", "");
-			$(".table-container-col").removeClass("table-container-col-off");
-			$(".table-container-col").addClass("table-container-col-on");
-			$(".table-container-row").removeClass("table-container-row-off");
-			$(".table-container-row").addClass("table-container-row-on");
 		} else {
 			$(this).css("display", "none");
-			$(".table-container-col").removeClass("table-container-col-on");
-			$(".table-container-col").addClass("table-container-col-off");
-			$(".table-container-row").removeClass("table-container-row-on");
-			$(".table-container-row").addClass("table-container-row-off");
 		}
 	});
 	$(".div-tooltip").each(function() {
@@ -378,12 +258,11 @@ function fn_info_display() {
 function fn_div_container_add() {
 	var html = "";
 	html += "<div class='div-setting-item div-tooltip div-container-item-btn'>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-del f5'><img src='resources/assets/img/ico_btn_remove.png'/>삭제</button></span>";
+	html += "	<span class='span-label-button'><button type='button' class='btn-container-del f5'><img src='resources/assets/img/ico_btn_remove.png'/>행삭제</button></span>";
 	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-1 f5'><img src='resources/assets/img/ico_btn_add.png'/>세로</button></span>";
 	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-2 f5'><img src='resources/assets/img/ico_btn_add.png'/>상하</button></span>";
 	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-3 f5'><img src='resources/assets/img/ico_btn_add.png'/>상단</button></span>";
 	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-4 f5'><img src='resources/assets/img/ico_btn_add.png'/>하단</button></span>";
-	html += "	<span class='span-label-title f10'>주석</span>";
 	html += "	<span class='span-label-form'><input type='text' class='text-container-add f10'/></span>";
 	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-5 f5'><img src='resources/assets/img/ico_btn_add.png'/>공백세로</button></span>";
 	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-6 f5'><img src='resources/assets/img/ico_btn_add.png'/>공백상하</button></span>";
@@ -396,9 +275,11 @@ function fn_div_container_add() {
 	fn_div_container_reset();
 };
 function fn_div_container_del(pkIdx) {
-	$("#div-container-item--" + pkIdx).remove();
-	$("#div-container-item-btn--" + pkIdx).remove();
-	fn_div_container_reset();
+	if (confirm("해당 행을\n삭제하시겠습니까?") == true) {
+		$("#div-container-item--" + pkIdx).remove();
+		$("#div-container-item-btn--" + pkIdx).remove();
+		fn_div_container_reset();
+	}	
 };
 function fn_div_container_reset() {
 	$(".div-container-item").each(function(pkIdx) {
@@ -421,15 +302,12 @@ function fn_div_container_reset() {
 	fn_info_display();
 };
 function fn_div_container_item_add(tp, prntIdx) {
-	var html01 = "<div class='div-setting-item div-tooltip'><span class='span-label-button'><button type='button' class='btn-div-container-item-table-del--" + prntIdx + " btn-div-container-item-table-del f5'><img src='resources/assets/img/ico_btn_remove.png'/>삭제</button></span></div>";
-	
 	var html = "";
 	var txt = $("#text-container-add--" + prntIdx).val();
 	$("#text-container-add--" + prntIdx).val("");
 	
 	if (tp == 1 || tp == 5) {
 		html += "<div class='div-container-item--" + prntIdx + " div-container-item-col div-container-item-col--m'>";
-		html += html01;
 		html += "	<table class='table-container table-container-col--" + prntIdx + " table-container-col'>";
 		if (tp == 1) {
 		html += "		<tbody class='table-use table-use-col'></tbody>";
@@ -440,7 +318,6 @@ function fn_div_container_item_add(tp, prntIdx) {
 		html += "</div>";
 	} else if (tp == 2 || tp == 3 || tp == 4 || tp == 6 || tp == 7) {
 		html += "<div class='div-container-item--" + prntIdx + " div-container-item-row div-container-item-row--m'>";
-		html += html01;
 		html += "	<table class='table-container table-container-row--" + prntIdx + " table-container-row'>";
 		if (tp == 2 || tp == 3) {
 		html += "		<tbody class='table-use table-use-row'></tbody>";
@@ -461,14 +338,14 @@ function fn_div_container_item_add(tp, prntIdx) {
 	fn_div_container_item_reset(prntIdx);
 };
 function fn_div_container_item_del(prntIdx, pkIdx) {
-	$("#div-container-item--" + prntIdx + "--" + pkIdx).remove();
-	fn_div_container_item_reset(prntIdx);
+	if (confirm("해당 테이블을\n삭제하시겠습니까?") == true) {
+		$("#div-container-item--" + prntIdx + "--" + pkIdx).remove();
+		fn_div_container_item_reset(prntIdx);
+	}
 };
 function fn_div_container_item_reset(prntIdx) {
 	$(".div-container-item--" + prntIdx).each(function(pkIdx) {
 		$(this).attr("id", "div-container-item--" + prntIdx + "--" + pkIdx);
-	});
-	$(".btn-div-container-item-table-del--" + prntIdx).each(function(pkIdx) {
 		$(this).attr("onclick", "fn_div_container_item_del(" + prntIdx + "," + pkIdx + ");");
 	});
 	fn_info_display();

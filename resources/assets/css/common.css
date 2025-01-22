@@ -1,3 +1,9 @@
+.div-setting-container {
+	height:2rem;width:auto;display:inline-block;
+}
+.div-setting-item {
+	height:2rem;width:auto;display:block;
+}
 input[type=checkbox] {
 	display:none;
 }
@@ -28,7 +34,7 @@ input[type=checkbox]:checked + .label-radio::before {
 	height:100%;width:3rem;display:inline-block;
 }
 .span-label-form {
-	height:100%;width:5rem;display:inline-block;
+	height:100%;width:3rem;display:inline-block;
 }
 .span-label-form input[type=text] {
 	height:80%;width:80%;
@@ -51,16 +57,10 @@ input[type=checkbox]:checked + .label-radio::before {
 	border:0.1rem solid #E9ECF2;
 	table-layout:fixed;
 }
-.table-container-col-on {
-	height:90%;width:100%;
-}
-.table-container-row-on {
-	height:45%;width:100%;
-}
-.table-container-col-off {
+.table-container-col {
 	height:100%;width:100%;
 }
-.table-container-row-off {
+.table-container-row {
 	height:50%;width:100%;
 }
 td {

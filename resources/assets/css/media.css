@@ -1,11 +1,4 @@
 @media (max-width:799px) {
-	.div-container .div-container-item + .div-setting-item {
-		margin-top:6.5rem;
-	}
-	.div-setting-item {
-		height:2rem;width:auto;display:block;
-		margin-top:1.5rem;
-	}
 	.div-container-item-col--m {
 		height:15rem;width:7.5rem;display:inline-block;
 	}
@@ -17,13 +10,6 @@
 	}
 }
 @media (min-width:800px) and (max-width:899px) {
-	.div-container .div-container-item + .div-setting-item {
-		margin-top:2.5rem;
-	}
-	.div-setting-item {
-		height:2rem;width:auto;display:block;
-		margin-top:1.5rem;
-	}
 	.div-container-item-col--m {
 		height:16rem;width:8rem;display:inline-block;
 	}
@@ -35,13 +21,6 @@
 	}
 }
 @media (min-width:900px) and (max-width:999px) {
-	.div-container .div-container-item + .div-setting-item {
-		margin-top:2rem;
-	}
-	.div-setting-item {
-		height:2rem;width:auto;display:block;
-		margin-top:1.5rem;
-	}
 	.div-container-item-col--m {
 		height:17rem;width:8.5rem;display:inline-block;
 	}
@@ -53,13 +32,6 @@
 	}
 }
 @media (min-width:1000px) and (max-width:1199px) {
-	.div-container .div-container-item + .div-setting-item {
-		margin-top:1rem;
-	}
-	.div-setting-item {
-		height:2rem;width:auto;display:inline-block;
-		margin:0rem;
-	}
 	.div-container-item-col--m {
 		height:19rem;width:9.5rem;display:inline-block;
 	}
@@ -71,13 +43,6 @@
 	}
 }
 @media (min-width:1200px) {
-	.div-container .div-container-item + .div-setting-item {
-		margin:0rem;
-	}
-	.div-setting-item {
-		height:2rem;width:auto;display:inline-block;
-		margin:0rem;
-	}
 	.div-container-item-col--m {
 		height:23rem;width:11.5rem;display:inline-block;
 	}
