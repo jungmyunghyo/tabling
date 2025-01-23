@@ -12,11 +12,13 @@
 		<script type="text/javascript" src="resources/assets/js/valid.js"></script>
 		<script type="text/javascript" src="resources/assets/js/common.js"></script>
 		<script type="text/javascript" src="resources/assets/js/position.js"></script>
+		<script type="text/javascript" src="resources/assets/js/rotation.js"></script>
+		<script type="text/javascript" src="resources/assets/js/display.js"></script>
 	</head>
 	<body class="body-container">
 		<section class="section-container">
 			<div class="div-setting-container">
-				<input type="checkbox" id="radio-tooltip-1" onclick="fn_info_display();" checked/>
+				<input type="checkbox" id="radio-tooltip-1" checked/>
 				<label class="label-radio" for="radio-tooltip-1"></label>
 			</div>
 		</section>
@@ -26,7 +28,7 @@
 				<span class="span-form"><input type="text" id="totFemaleUsrCnt" class="f10" value="25" maxlength="99" placeholder="여자" onchange="fn_set_num(this);fn_info_cnt();" onkeyup="fn_next(1);"/></span>
 				<span class="span-title f10">남자수</span>
 				<span class="span-form"><input type="text" id="totMaleUsrCnt" class="f10" value="35" maxlength="99" placeholder="남자" onchange="fn_set_num(this);fn_info_cnt();" onkeyup="fn_next(2);"/></span>
-				<span class="span-button"><button type="button" class="btn--add btn--add-0 f5" onclick="fn_div_container_add();">행추가</button></span>
+				<span class="span-button --tooltip-2"><button type="button" class="btn--add btn--add-0 f5" onclick="fn_div_container_add();">행추가</button></span>
 			</div>
 		</section>
 		<section class="section-container --tooltip-1">
@@ -40,6 +42,13 @@
 			<div class="div-setting-container">
 				<span class="span-title f10">남자</span>
 				<span class="span-value"><textarea id="totMaleListTxt" class="f6-g" onkeyup="fn_next(4);"></textarea></span>
+			</div>
+		</section>
+		<section class="section-container --tooltip-1 --tooltip-2">
+			<div class="div-setting-container">
+				<span class="span-button"><button type="button" class="btn--mod btn--add-0 f5" onclick="fn_rotation_all();">무작위</button></span>
+				<span class="span-button --tooltip-2f"><button type="button" class="btn--mod btn--add-0 f5" onclick="fn_rotation(0);">여자</button></span>
+				<span class="span-button --tooltip-2m"><button type="button" class="btn--mod btn--add-0 f5" onclick="fn_rotation(1);">남자</button></span>
 			</div>
 		</section>
 		<section class="section-container">

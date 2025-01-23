@@ -1,25 +1,3 @@
-function fn_info_display() {
-	$(".--tooltip-1").each(function() {
-		if ($("#radio-tooltip-1").prop("checked") == true) {
-			$(this).css("display", "");
-		} else {
-			$(this).css("display", "none");
-		}
-	});
-};
-function fn_next(tp) {
-	if (window.event.keyCode == 13) {
-		if (tp == 1) {
-			$("#totMaleUsrCnt").focus();
-		} else if (tp == 2) {
-			$("#totFemaleListTxt").focus();
-		} else if (tp == 3) {
-			$("#totMaleListTxt").focus();
-		} else if (tp == 4) {
-			fn_info_list();
-		}
-	}
-};
 function fn_info_list() {
 	var totFemaleArr = new Array();
 	var totMaleArr = new Array();
@@ -64,12 +42,31 @@ function fn_info_cnt() {
 	});
 	if (totFemaleRstCnt > 0) {
 		for (var i=1; i<=totFemaleRstCnt; i++) {
-			totFemaleArr.push("F" + i);
+			if (totFemaleArr.indexOf("F" + i) == -1) {
+				totFemaleArr.push("F" + i);
+			} else {
+				for (var x=1; x<=totFemaleUsrCnt; x++) {
+					if (totFemaleArr.indexOf("F" + x) == -1) {
+						totFemaleArr.push("F" + x);
+					}
+				}
+			}
 		}
 	}
 	if (totMaleRstCnt > 0) {
 		for (var i=1; i<=totMaleRstCnt; i++) {
-			totMaleArr.push("M" + i);
+			if (totMaleArr.indexOf("M" + i) == -1) {
+				totMaleArr.push("M" + i);
+			} else {
+				for (var x=1; x<=totMaleUsrCnt; x++) {
+					if (totMaleArr.indexOf("M" + x) == -1) {
+						totMaleArr.push("M" + x);
+					}
+				}
+			}
+
+
+			
 		}
 	}
 	$("#totFemaleListTxt").val(totFemaleArr);
@@ -77,6 +74,7 @@ function fn_info_cnt() {
 	fn_info();
 };
 function fn_info() {
+	fn_tooltip_all();
 	var totTbUsrCntArr = new Array();
 	var totFemaleArr = new Array();
 	var totMaleArr = new Array();
@@ -351,7 +349,6 @@ function fn_div_container_reset() {
 			$(this).attr("onclick", "fn_div_container_item_add(" + i + ", " + pkIdx + ");");
 		});
 	}
-	fn_info_display();
 	fn_info_cnt();
 };
 function fn_div_container_item_add(tp, prntIdx) {
@@ -401,6 +398,5 @@ function fn_div_container_item_reset(prntIdx) {
 		$(this).attr("id", "div-container-item--" + prntIdx + "--" + pkIdx);
 		$(this).attr("onclick", "fn_div_container_item_del(" + prntIdx + "," + pkIdx + ");");
 	});
-	fn_info_display();
 	fn_info_cnt();
 };
