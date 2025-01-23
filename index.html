@@ -6,6 +6,7 @@
 		<title>tabling</title>
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 		<link rel="stylesheet" type="text/css" href="resources/assets/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="resources/assets/css/style.css"/>
 		<link rel="stylesheet" type="text/css" href="resources/assets/css/font.css"/>
 		<link rel="stylesheet" type="text/css" href="resources/assets/css/media.css"/>
 		<script type="text/javascript" src="resources/assets/js/common.js"></script>
@@ -13,25 +14,33 @@
 	</head>
 	<body class="body-container">
 		<section class="section-container">
-			<div class="div-setting-container div-tooltip-mtr">
+			<div class="div-setting-container">
 				<input type="checkbox" id="tooltip-radio" onclick="fn_info_display();" checked/>
 				<label class="label-radio" for="tooltip-radio"></label>
-				<span class="span-label-button"><button type="button" class="f5" onclick="fn_div_container_add();"><img src="resources/assets/img/ico_btn_add.png"/>행추가</button></span>
 			</div>
-			<div class="div-setting-container div-tooltip">
-				<span class="span-label-title f10">여자수</span>
-				<span class="span-label-form"><input type="text" id="totFemaleUsrCnt" class="f10" value="25" maxlength="2" onkeyup="fn_info_cnt();" onchange="fn_info_cnt();"/></span>
-				<span class="span-label-title f10">남자수</span>
-				<span class="span-label-form"><input type="text" id="totMaleUsrCnt" class="f10" value="35" maxlength="2" onkeyup="fn_info_cnt();" onchange="fn_info_cnt();"/></span>
+		</section>
+		<section class="section-container --tooltip">
+			<div class="div-setting-container">
+				<span class="span-title f10">여자수</span>
+				<span class="span-form"><input type="text" id="totFemaleUsrCnt" class="f10" value="25" maxlength="2" placeholder="여자" onkeyup="fn_info_cnt();" onchange="fn_info_cnt();"/></span>
+				<span class="span-title f10">남자수</span>
+				<span class="span-form"><input type="text" id="totMaleUsrCnt" class="f10" value="35" maxlength="2" placeholder="남자" onkeyup="fn_info_cnt();" onchange="fn_info_cnt();"/></span>
+				<span class="span-button"><button type="button" class="btn--add btn--add-0 f5" onclick="fn_div_container_add();">행추가</button></span>
 			</div>
-			<div class="div-setting-item div-tooltip">
-				<span class="span-label-title f10">여자</span>
-				<span id="totFemaleListTxt" class="span-label-value f6-g"></span>
+		</section>
+		<section class="section-container --tooltip">
+			<div class="div-setting-container">
+				<span class="span-title f10">여자</span>
+				<span id="totFemaleListTxt" class="span-value f6-g"></span>
 			</div>
-			<div class="div-setting-item div-tooltip">
-				<span class="span-label-title f10">남자</span>
-				<span id="totMaleListTxt" class="span-label-value f6-g"></span>
+		</section>
+		<section class="section-container --tooltip">
+			<div class="div-setting-container">
+				<span class="span-title f10">남자</span>
+				<span id="totMaleListTxt" class="span-value f6-g"></span>
 			</div>
+		</section>
+		<section class="section-container">
 			<div id="div-container" class="div-container"></div>
 		</section>
 	</body>

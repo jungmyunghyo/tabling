@@ -44,7 +44,7 @@ function fn_info_cnt() {
 				$(this).attr("id", "td-use-" + usrCnt);
 				$(this).addClass("td-use");
 				$(this).addClass("td-use-" + i);
-				$(this).append("<div class='div-tooltip f6-g'>i:" + i + "/" + "n:" + usrCnt + "</div>");
+				$(this).append("<div class='--tooltip f6-g'>i:" + i + "/" + "n:" + usrCnt + "</div>");
 			}
 		});
 	}
@@ -156,11 +156,11 @@ function fn_info_cnt() {
 					tbMaleArr.push(chldrObj);
 				}
 			});
-			$(this).append("<div class='div-tooltip-mtr f10'>" + (i + 1) +"조</div>");
-			$(this).append("<div class='div-tooltip f6-g'>tCnt:" + totCnt + "/" + "rCnt:" + Number($(this).attr("rstCnt")) + "</div>");
-			$(this).append("<div class='div-tooltip f6-g'>fCnt:" + fCnt + "/" + "mCnt:" + mCnt + "</div>");
-			$(this).append("<div class='div-tooltip f5-g'>fArr:" + tbFemaleArr + "</div>");
-			$(this).append("<div class='div-tooltip f5-g'>mArr:" + tbMaleArr + "</div>");
+			$(this).append("<div class='--tooltip-mtr f10'>" + (i + 1) +"조</div>");
+			$(this).append("<div class='--tooltip f6-g'>tCnt:" + totCnt + "/" + "rCnt:" + Number($(this).attr("rstCnt")) + "</div>");
+			$(this).append("<div class='--tooltip f6-g'>fCnt:" + fCnt + "/" + "mCnt:" + mCnt + "</div>");
+			$(this).append("<div class='--tooltip f5-g'>fArr:" + tbFemaleArr + "</div>");
+			$(this).append("<div class='--tooltip f5-g'>mArr:" + tbMaleArr + "</div>");
 		});
 		$("#table-use-" + i).each(function() {
 			var fIdx = 0;
@@ -168,11 +168,11 @@ function fn_info_cnt() {
 			for (var x=1; x<=totCnt; x++) {
 				if (fn_position_flag(totCnt, fCnt, mCnt, x) == true) {
 					$(this).find(".td-use-" + x).addClass("td-use-m");
-					$(this).find(".td-use-" + x).append("<div class='div-tooltip-mtr f6'>" + tbMaleArr[mIdx] +"</div>");
+					$(this).find(".td-use-" + x).append("<div class='--tooltip-mtr f6'>" + tbMaleArr[mIdx] +"</div>");
 					mIdx++;
 				} else {
 					$(this).find(".td-use-" + x).addClass("td-use-f");
-					$(this).find(".td-use-" + x).append("<div class='div-tooltip-mtr f6'>" + tbFemaleArr[fIdx] +"</div>");
+					$(this).find(".td-use-" + x).append("<div class='--tooltip-mtr f6'>" + tbFemaleArr[fIdx] +"</div>");
 					fIdx++;
 				}
 			}
@@ -240,14 +240,7 @@ function fn_tmp(tp, sz) {
 	return html;
 };
 function fn_info_display() {
-	$("button").each(function() {
-		if ($("#tooltip-radio").prop("checked") == true) {
-			$(this).css("display", "");
-		} else {
-			$(this).css("display", "none");
-		}
-	});
-	$(".div-tooltip").each(function() {
+	$(".--tooltip").each(function() {
 		if ($("#tooltip-radio").prop("checked") == true) {
 			$(this).css("display", "");
 		} else {
@@ -257,49 +250,50 @@ function fn_info_display() {
 };
 function fn_div_container_add() {
 	var html = "";
-	html += "<div class='div-setting-item div-tooltip div-container-item-btn'>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-del f5'><img src='resources/assets/img/ico_btn_remove.png'/>행삭제</button></span>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-1 f5'><img src='resources/assets/img/ico_btn_add.png'/>세로</button></span>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-2 f5'><img src='resources/assets/img/ico_btn_add.png'/>상하</button></span>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-3 f5'><img src='resources/assets/img/ico_btn_add.png'/>상단</button></span>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-4 f5'><img src='resources/assets/img/ico_btn_add.png'/>하단</button></span>";
-	html += "	<span class='span-label-form'><input type='text' class='text-container-add f10'/></span>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-5 f5'><img src='resources/assets/img/ico_btn_add.png'/>공백세로</button></span>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-6 f5'><img src='resources/assets/img/ico_btn_add.png'/>공백상하</button></span>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-7 f5'><img src='resources/assets/img/ico_btn_add.png'/>공백상단</button></span>";
-	html += "	<span class='span-label-button'><button type='button' class='btn-container-add-8 f5'><img src='resources/assets/img/ico_btn_add.png'/>공백하단</button></span>";
-	html += "</div>";
-	html += "<div class='div-container-item'>"; 
+	html += "<div class='div-container-container'>";
+	html += "	<div class='div-setting-container --tooltip'>";
+	html += "		<span class='span-button'><button type='button' class='btn--del btn--del-0 f5'>행삭제</button></span>";
+	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-1 f5'>세로</button></span>";
+	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-2 f5'>상하</button></span>";
+	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-3 f5'>상단</button></span>";
+	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-4 f5'>하단</button></span>";
+	html += "		<span class='span-form'><input type='text' class='text-container-add f10' value='' maxlength='10' placeholder='주석'/></span>";
+	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-5 f5'>공백세로</button></span>";
+	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-6 f5'>공백상단</button></span>";
+	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-7 f5'>공백하단</button></span>";
+	html += "	</div>";
+	html += "	<div class='div-container-item'>"; 
+	html += "	</div>";
 	html += "</div>";
 	$("#div-container").append(html);
 	fn_div_container_reset();
 };
 function fn_div_container_del(pkIdx) {
 	if (confirm("해당 행을\n삭제하시겠습니까?") == true) {
-		$("#div-container-item--" + pkIdx).remove();
-		$("#div-container-item-btn--" + pkIdx).remove();
+		$("#div-container-container--" + pkIdx).remove();
 		fn_div_container_reset();
 	}	
 };
 function fn_div_container_reset() {
+	$(".div-container-container").each(function(pkIdx) {
+		$(this).attr("id", "div-container-container--" + pkIdx);
+	});
 	$(".div-container-item").each(function(pkIdx) {
 		$(this).attr("id", "div-container-item--" + pkIdx);
 	});
-	$(".div-container-item-btn").each(function(pkIdx) {
-		$(this).attr("id", "div-container-item-btn--" + pkIdx);
-	});
-	$(".btn-container-del").each(function(pkIdx) {
+	$(".btn--del-0").each(function(pkIdx) {
 		$(this).attr("onclick", "fn_div_container_del(" + pkIdx + ");");
 	});
 	$(".text-container-add").each(function(pkIdx) {
 		$(this).attr("id", "text-container-add--" + pkIdx);
 	});
 	for (var i=1; i<=7; i++) {
-		$(".btn-container-add-" + i).each(function(pkIdx) {
+		$(".btn--add-" + i).each(function(pkIdx) {
 			$(this).attr("onclick", "fn_div_container_item_add(" + i + ", " + pkIdx + ");");
 		});
 	}
 	fn_info_display();
+	fn_info_cnt();
 };
 function fn_div_container_item_add(tp, prntIdx) {
 	var html = "";
@@ -307,29 +301,29 @@ function fn_div_container_item_add(tp, prntIdx) {
 	$("#text-container-add--" + prntIdx).val("");
 	
 	if (tp == 1 || tp == 5) {
-		html += "<div class='div-container-item--" + prntIdx + " div-container-item-col div-container-item-col--m'>";
-		html += "	<table class='table-container table-container-col--" + prntIdx + " table-container-col'>";
+		html += "<div class='div-container-item--" + prntIdx + " div-container-item-col--m'>";
+		html += "	<table class='table-container-col'>";
 		if (tp == 1) {
 		html += "		<tbody class='table-use table-use-col'></tbody>";
 		} else if (tp == 5 && fn_is_empty(txt) == false) {
-		html += "		<tbody class='table-txt table-txt-col'><tr><td>" + txt + "</td></tr></tbody>";	
+		html += "		<tbody><tr><td><div class='--tooltip-mtr f10'>" + txt + "</div></td></tr></tbody>";	
 		}
 		html += "	</table>";
 		html += "</div>";
 	} else if (tp == 2 || tp == 3 || tp == 4 || tp == 6 || tp == 7) {
-		html += "<div class='div-container-item--" + prntIdx + " div-container-item-row div-container-item-row--m'>";
-		html += "	<table class='table-container table-container-row--" + prntIdx + " table-container-row'>";
+		html += "<div class='div-container-item--" + prntIdx + " div-container-item-row--m'>";
+		html += "	<table class='table-container-row'>";
 		if (tp == 2 || tp == 3) {
 		html += "		<tbody class='table-use table-use-row'></tbody>";
 		} else if ((tp == 4 || tp == 6) && fn_is_empty(txt) == false) {
-		html += "		<tbody class='table-txt table-txt-col'><tr><td>" + txt + "</td></tr></tbody>";	
+		html += "		<tbody><tr><td><div class='--tooltip-mtr f10'>" + txt + "</div></td></tr></tbody>";	
 		}
 		html += "	</table>";
-		html += "	<table class='table-container table-container-row--" + prntIdx + " table-container-row'>";
+		html += "	<table class='table-container-row'>";
 		if (tp == 2 || tp == 4) {
 		html += "		<tbody class='table-use table-use-row'></tbody>";
 		} else if ((tp == 3 || tp == 7) && fn_is_empty(txt) == false) {
-		html += "		<tbody class='table-txt table-txt-col'><tr><td>" + txt + "</td></tr></tbody>";	
+		html += "		<tbody><tr><td><div class='--tooltip-mtr f10'>" + txt + "</div></td></tr></tbody>";	
 		}
 		html += "	</table>";
 		html += "</div>";
