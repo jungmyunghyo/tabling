@@ -9,35 +9,37 @@
 		<link rel="stylesheet" type="text/css" href="resources/assets/css/style.css"/>
 		<link rel="stylesheet" type="text/css" href="resources/assets/css/font.css"/>
 		<link rel="stylesheet" type="text/css" href="resources/assets/css/media.css"/>
+		<script type="text/javascript" src="resources/assets/js/valid.js"></script>
 		<script type="text/javascript" src="resources/assets/js/common.js"></script>
 		<script type="text/javascript" src="resources/assets/js/position.js"></script>
 	</head>
 	<body class="body-container">
 		<section class="section-container">
 			<div class="div-setting-container">
-				<input type="checkbox" id="tooltip-radio" onclick="fn_info_display();" checked/>
-				<label class="label-radio" for="tooltip-radio"></label>
+				<input type="checkbox" id="radio-tooltip-1" onclick="fn_info_display();" checked/>
+				<label class="label-radio" for="radio-tooltip-1"></label>
 			</div>
 		</section>
-		<section class="section-container --tooltip">
+		<section class="section-container --tooltip-1">
 			<div class="div-setting-container">
 				<span class="span-title f10">여자수</span>
-				<span class="span-form"><input type="text" id="totFemaleUsrCnt" class="f10" value="25" maxlength="2" placeholder="여자" onkeyup="fn_info_cnt();" onchange="fn_info_cnt();"/></span>
+				<span class="span-form"><input type="text" id="totFemaleUsrCnt" class="f10" value="25" maxlength="99" placeholder="여자" onchange="fn_set_num(this);fn_info_cnt();" onkeyup="fn_next(1);"/></span>
 				<span class="span-title f10">남자수</span>
-				<span class="span-form"><input type="text" id="totMaleUsrCnt" class="f10" value="35" maxlength="2" placeholder="남자" onkeyup="fn_info_cnt();" onchange="fn_info_cnt();"/></span>
+				<span class="span-form"><input type="text" id="totMaleUsrCnt" class="f10" value="35" maxlength="99" placeholder="남자" onchange="fn_set_num(this);fn_info_cnt();" onkeyup="fn_next(2);"/></span>
 				<span class="span-button"><button type="button" class="btn--add btn--add-0 f5" onclick="fn_div_container_add();">행추가</button></span>
 			</div>
 		</section>
-		<section class="section-container --tooltip">
+		<section class="section-container --tooltip-1">
 			<div class="div-setting-container">
 				<span class="span-title f10">여자</span>
-				<span id="totFemaleListTxt" class="span-value f6-g"></span>
+				<span class="span-value"><textarea id="totFemaleListTxt" class="f6-g" onkeyup="fn_next(3);"></textarea></span>
+				<span class="span-button"><button type="button" class="btn--mod btn--mod-0 f5" onclick="fn_info_list();">적용</button></span>
 			</div>
 		</section>
-		<section class="section-container --tooltip">
+		<section class="section-container --tooltip-1">
 			<div class="div-setting-container">
 				<span class="span-title f10">남자</span>
-				<span id="totMaleListTxt" class="span-value f6-g"></span>
+				<span class="span-value"><textarea id="totMaleListTxt" class="f6-g" onkeyup="fn_next(4);"></textarea></span>
 			</div>
 		</section>
 		<section class="section-container">

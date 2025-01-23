@@ -1,29 +1,97 @@
-function fn_is_empty(value) {
-	if (value == null || value == "" || value == undefined) {
-		return true;
-	} else if (value != null && typeof value == "object" && !Object.keys(value).length) {
-		return true;
-	} else {
-		return false;
+function fn_info_display() {
+	$(".--tooltip-1").each(function() {
+		if ($("#radio-tooltip-1").prop("checked") == true) {
+			$(this).css("display", "");
+		} else {
+			$(this).css("display", "none");
+		}
+	});
+};
+function fn_next(tp) {
+	if (window.event.keyCode == 13) {
+		if (tp == 1) {
+			$("#totMaleUsrCnt").focus();
+		} else if (tp == 2) {
+			$("#totFemaleListTxt").focus();
+		} else if (tp == 3) {
+			$("#totMaleListTxt").focus();
+		} else if (tp == 4) {
+			fn_info_list();
+		}
 	}
 };
+function fn_info_list() {
+	var totFemaleArr = new Array();
+	var totMaleArr = new Array();
+	$($("#totFemaleListTxt").val().split(",")).each(function(chldrIdx, chldrObj) {
+		if (fn_is_kor_en_num(chldrObj) == false) {
+			totFemaleArr.push(fn_return_kor_en_num(chldrObj));
+		}
+	});
+	$($("#totMaleListTxt").val().split(",")).each(function(chldrIdx, chldrObj) {
+		if (fn_is_kor_en_num(chldrObj) == false) {
+			totMaleArr.push(fn_return_kor_en_num(chldrObj));
+		}
+	});
+	$("#totFemaleUsrCnt").val(totFemaleArr.length);
+	$("#totMaleUsrCnt").val(totMaleArr.length);
+	$("#totFemaleListTxt").val(totFemaleArr);
+	$("#totMaleListTxt").val(totMaleArr);
+	fn_info_cnt();
+};
 function fn_info_cnt() {
+	var totFemaleArr = new Array();
+	var totMaleArr = new Array();
+	var totFemaleUsrCnt = Number($("#totFemaleUsrCnt").val());
+	var totMaleUsrCnt = Number($("#totMaleUsrCnt").val());
+	var totFemaleRstCnt = totFemaleUsrCnt;
+	var totMaleRstCnt = totMaleUsrCnt;
+	$($("#totFemaleListTxt").val().split(",")).each(function(chldrIdx, chldrObj) {
+		if (totFemaleRstCnt > 0) {
+			if (fn_is_kor_en_num(chldrObj) == false) {
+				totFemaleArr.push(fn_return_kor_en_num(chldrObj));
+				totFemaleRstCnt--;
+			}
+		}
+	});
+	$($("#totMaleListTxt").val().split(",")).each(function(chldrIdx, chldrObj) {
+		if (totMaleRstCnt > 0) {
+			if (fn_is_kor_en_num(chldrObj) == false) {
+				totMaleArr.push(fn_return_kor_en_num(chldrObj));
+				totMaleRstCnt--;
+			}
+		}
+	});
+	if (totFemaleRstCnt > 0) {
+		for (var i=1; i<=totFemaleRstCnt; i++) {
+			totFemaleArr.push("F" + i);
+		}
+	}
+	if (totMaleRstCnt > 0) {
+		for (var i=1; i<=totMaleRstCnt; i++) {
+			totMaleArr.push("M" + i);
+		}
+	}
+	$("#totFemaleListTxt").val(totFemaleArr);
+	$("#totMaleListTxt").val(totMaleArr);
+	fn_info();
+};
+function fn_info() {
 	var totTbUsrCntArr = new Array();
 	var totFemaleArr = new Array();
 	var totMaleArr = new Array();
-	
-	var totFemaleUsrCnt = Number($("#totFemaleUsrCnt").val());
-	var totMaleUsrCnt = Number($("#totMaleUsrCnt").val());
-	
-	for (var i=1; i<=totFemaleUsrCnt; i++) {
-		totFemaleArr.push("F-" + i);
-	}
-	for (var i=1; i<=totMaleUsrCnt; i++) {
-		totMaleArr.push("M-" + i);
-	}
-	$("#totFemaleListTxt").text(totFemaleArr);
-	$("#totMaleListTxt").text(totMaleArr);
-	
+	$($("#totFemaleListTxt").val().split(",")).each(function(chldrIdx, chldrObj) {
+		if (fn_is_kor_en_num(chldrObj) == false) {
+			totFemaleArr.push(fn_return_kor_en_num(chldrObj));
+		}
+	});
+	$($("#totMaleListTxt").val().split(",")).each(function(chldrIdx, chldrObj) {
+		if (fn_is_kor_en_num(chldrObj) == false) {
+			totMaleArr.push(fn_return_kor_en_num(chldrObj));
+		}
+	});
+	var totFemaleUsrCnt = Number(totFemaleArr.length);
+	var totMaleUsrCnt = Number(totMaleArr.length);
 	var totUsrCnt = Number(totFemaleUsrCnt + totMaleUsrCnt);
 	var totTbCnt = Number($(".table-use").length);
 	var totMaxUsrPerTbCnt = Math.ceil(Number(totUsrCnt / totTbCnt));
@@ -44,7 +112,7 @@ function fn_info_cnt() {
 				$(this).attr("id", "td-use-" + usrCnt);
 				$(this).addClass("td-use");
 				$(this).addClass("td-use-" + i);
-				$(this).append("<div class='--tooltip f6-g'>i:" + i + "/" + "n:" + usrCnt + "</div>");
+				$(this).append("<div class='--tooltip-1 f6-g'>i:" + i + "/" + "n:" + usrCnt + "</div>");
 			}
 		});
 	}
@@ -156,11 +224,11 @@ function fn_info_cnt() {
 					tbMaleArr.push(chldrObj);
 				}
 			});
-			$(this).append("<div class='--tooltip-mtr f10'>" + (i + 1) +"조</div>");
-			$(this).append("<div class='--tooltip f6-g'>tCnt:" + totCnt + "/" + "rCnt:" + Number($(this).attr("rstCnt")) + "</div>");
-			$(this).append("<div class='--tooltip f6-g'>fCnt:" + fCnt + "/" + "mCnt:" + mCnt + "</div>");
-			$(this).append("<div class='--tooltip f5-g'>fArr:" + tbFemaleArr + "</div>");
-			$(this).append("<div class='--tooltip f5-g'>mArr:" + tbMaleArr + "</div>");
+			$(this).append("<div class='f10'>" + (i + 1) +"조</div>");
+			$(this).append("<div class='--tooltip-1 f6-g'>tCnt:" + totCnt + "/" + "rCnt:" + Number($(this).attr("rstCnt")) + "</div>");
+			$(this).append("<div class='--tooltip-1 f6-g'>fCnt:" + fCnt + "/" + "mCnt:" + mCnt + "</div>");
+			$(this).append("<div class='--tooltip-1 f5-g'>fArr:" + tbFemaleArr + "</div>");
+			$(this).append("<div class='--tooltip-1 f5-g'>mArr:" + tbMaleArr + "</div>");
 		});
 		$("#table-use-" + i).each(function() {
 			var fIdx = 0;
@@ -168,11 +236,11 @@ function fn_info_cnt() {
 			for (var x=1; x<=totCnt; x++) {
 				if (fn_position_flag(totCnt, fCnt, mCnt, x) == true) {
 					$(this).find(".td-use-" + x).addClass("td-use-m");
-					$(this).find(".td-use-" + x).append("<div class='--tooltip-mtr f6'>" + tbMaleArr[mIdx] +"</div>");
+					$(this).find(".td-use-" + x).append("<div class='f6'>" + tbMaleArr[mIdx] +"</div>");
 					mIdx++;
 				} else {
 					$(this).find(".td-use-" + x).addClass("td-use-f");
-					$(this).find(".td-use-" + x).append("<div class='--tooltip-mtr f6'>" + tbFemaleArr[fIdx] +"</div>");
+					$(this).find(".td-use-" + x).append("<div class='f6'>" + tbFemaleArr[fIdx] +"</div>");
 					fIdx++;
 				}
 			}
@@ -239,19 +307,10 @@ function fn_tmp(tp, sz) {
 	}
 	return html;
 };
-function fn_info_display() {
-	$(".--tooltip").each(function() {
-		if ($("#tooltip-radio").prop("checked") == true) {
-			$(this).css("display", "");
-		} else {
-			$(this).css("display", "none");
-		}
-	});
-};
 function fn_div_container_add() {
 	var html = "";
 	html += "<div class='div-container-container'>";
-	html += "	<div class='div-setting-container --tooltip'>";
+	html += "	<div class='div-setting-container --tooltip-1'>";
 	html += "		<span class='span-button'><button type='button' class='btn--del btn--del-0 f5'>행삭제</button></span>";
 	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-1 f5'>세로</button></span>";
 	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-2 f5'>상하</button></span>";
@@ -306,7 +365,7 @@ function fn_div_container_item_add(tp, prntIdx) {
 		if (tp == 1) {
 		html += "		<tbody class='table-use table-use-col'></tbody>";
 		} else if (tp == 5 && fn_is_empty(txt) == false) {
-		html += "		<tbody><tr><td><div class='--tooltip-mtr f10'>" + txt + "</div></td></tr></tbody>";	
+		html += "		<tbody><tr><td><div class='f10'>" + txt + "</div></td></tr></tbody>";	
 		}
 		html += "	</table>";
 		html += "</div>";
@@ -316,14 +375,14 @@ function fn_div_container_item_add(tp, prntIdx) {
 		if (tp == 2 || tp == 3) {
 		html += "		<tbody class='table-use table-use-row'></tbody>";
 		} else if ((tp == 4 || tp == 6) && fn_is_empty(txt) == false) {
-		html += "		<tbody><tr><td><div class='--tooltip-mtr f10'>" + txt + "</div></td></tr></tbody>";	
+		html += "		<tbody><tr><td><div class='f10'>" + txt + "</div></td></tr></tbody>";	
 		}
 		html += "	</table>";
 		html += "	<table class='table-container-row'>";
 		if (tp == 2 || tp == 4) {
 		html += "		<tbody class='table-use table-use-row'></tbody>";
 		} else if ((tp == 3 || tp == 7) && fn_is_empty(txt) == false) {
-		html += "		<tbody><tr><td><div class='--tooltip-mtr f10'>" + txt + "</div></td></tr></tbody>";	
+		html += "		<tbody><tr><td><div class='f10'>" + txt + "</div></td></tr></tbody>";	
 		}
 		html += "	</table>";
 		html += "</div>";

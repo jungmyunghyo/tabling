@@ -18,6 +18,14 @@ input[type=checkbox]:checked + .label-radio::before {
 .span-form input[type=text]:focus {
 	border-bottom-color:#BF0021;
 }
+.span-value textarea {
+	height:calc(100% - (0.3rem * 2));width:calc(100% - (0.3rem * 2));
+	border:0.2rem solid #E9ECF2;
+	cursor:pointer;outline:none;resize:none;
+}
+.span-value textarea:focus {
+	border-bottom-color:#BF0021;
+}
 .span-button button[type=button] {
 	height:70%;width:90%;display:inline-flex;
 	border:0rem;border-radius:1rem;
@@ -31,4 +39,8 @@ input[type=checkbox]:checked + .label-radio::before {
 .span-button button[type=button].btn--del::before {
 	height:40%;width:40%;display:block;
 	background:url('../img/ico_btn_remove.png') no-repeat;background-size:60%;content:"";
+}
+.span-button button[type=button].btn--mod::before {
+	height:40%;width:40%;display:block;
+	background:url('../img/ico_btn_modify.png') no-repeat;background-size:60%;content:"";
 }

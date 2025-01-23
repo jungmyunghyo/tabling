@@ -20,7 +20,7 @@
 	margin:0rem 0.1rem;padding:0rem;
 }
 .span-value {
-	height:3rem;width:calc(90% - 4rem);display:inline-flex;
+	height:3rem;width:calc(90% - (4rem * 1) - (5rem * 1));display:inline-flex;
 	margin:0rem 0.1rem;padding:0rem;
 	align-items:center;
 }
