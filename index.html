@@ -14,8 +14,10 @@
 		<script type="text/javascript" src="resources/assets/js/position.js"></script>
 		<script type="text/javascript" src="resources/assets/js/rotation.js"></script>
 		<script type="text/javascript" src="resources/assets/js/display.js"></script>
+		<script type="text/javascript" src="resources/assets/js/place.js"></script>
 	</head>
 	<body class="body-container">
+		<div id="div-dim-bg"></div>
 		<section class="section-container">
 			<div class="div-setting-container">
 				<input type="checkbox" id="radio-tooltip-1" checked/>
@@ -29,6 +31,8 @@
 				<span class="span-title f10">남자수</span>
 				<span class="span-form"><input type="text" id="totMaleUsrCnt" class="f10" value="35" maxlength="99" placeholder="남자" onchange="fn_set_num(this);fn_info_cnt();" onkeyup="fn_next(2);"/></span>
 				<span class="span-button --tooltip-2"><button type="button" class="btn--add f5" onclick="fn_div_container_add();">행추가</button></span>
+				<span class="span-title f10">장소</span>
+				<span class="span-button"><button type="button" class="btn--inf f5" onclick="fn_place_pop(1);">찾기</button></span>
 			</div>
 		</section>
 		<section class="section-container --tooltip-1">
@@ -59,6 +63,38 @@
 			<input type="hidden" id="tbFemaleRstCnt" readonly disabled/>
 			<input type="hidden" id="tbMaleRstCnt" readonly disabled/>
 			<div id="div-container" class="div-container"></div>
+		</section>
+		<section class="section-container">
+			<div id="div-pop-place" class="div-pop">
+				<div class="div-pop-container-header">
+					<span class="span-button"><button type="button" class="btn--cls" onclick="fn_place_pop(0);"></button></span>
+				</div>
+				<div class="div-pop-container-body">
+					<ul class="ul-pop-container">
+						<li class="li-pop-container">
+							<span class="span-title f6-g">남부순환로1672</span>
+							<span class="span-button"><button type="button" class="btn--chk f5" onclick="fn_place_set(1, 40);">40</button></span>
+							<span class="span-button"><button type="button" class="btn--chk f5" onclick="fn_place_set(1, 50);">50</button></span>
+							<span class="span-button"><button type="button" class="btn--chk f5" onclick="fn_place_set(1, 60);">60</button></span>
+							<span class="span-button"><button type="button" class="btn--chk f5" onclick="fn_place_set(1, 70);">70</button></span>
+							<span class="span-button"><button type="button" class="btn--chk f5" onclick="fn_place_set(1, 80);">80</button></span>
+						</li>
+						<li class="li-pop-container">
+							<span class="span-title f6-g">당산로242</span>
+							<span class="span-button"><button type="button" class="btn--chk f5" onclick="fn_place_set(2, 40);">40</button></span>
+							<span class="span-button"><button type="button" class="btn--chk f5" onclick="fn_place_set(2, 50);">50</button></span>
+							<span class="span-button"><button type="button" class="btn--chk f5" onclick="fn_place_set(2, 60);">60</button></span>
+						</li>
+						<li class="li-pop-container">
+							<span class="span-title f6-g">서초중앙로20길24</span>
+							<span class="span-button"><button type="button" class="btn--chk f5" onclick="fn_place_set(3, 60);">60</button></span>
+							<span class="span-button"><button type="button" class="btn--chk f5" onclick="fn_place_set(3, 70);">70</button></span>
+							<span class="span-button"><button type="button" class="btn--chk f5" onclick="fn_place_set(3, 80);">80</button></span>
+							<span class="span-button"><button type="button" class="btn--chk f5" onclick="fn_place_set(3, 90);">90</button></span>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</section>
 	</body>
 </html>

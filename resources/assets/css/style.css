@@ -34,6 +34,10 @@ input[type=checkbox]:checked + .label-radio::before {
 	cursor:pointer;outline:none;
 	justify-content:center;align-items:center;
 }
+.span-button button[type=button].btn--inf::before {
+	height:1rem;width:1rem;display:block;
+	background:url('../img/icons_r_list.png') no-repeat -16px -144px;content:"";
+}
 .span-button button[type=button].btn--add::before {
 	height:1rem;width:1rem;display:block;
 	background:url('../img/icons_r_list.png') no-repeat -32px -128px;content:"";
@@ -53,6 +57,14 @@ input[type=checkbox]:checked + .label-radio::before {
 .span-button button[type=button].btn--mod::before {
 	height:1rem;width:1rem;display:block;
 	background:url('../img/icons_r_list.png') no-repeat -64px -112px;content:"";
+}
+.span-button button[type=button].btn--cls::before {
+	height:1rem;width:1rem;display:block;
+	background:url('../img/icons_r_list.png') no-repeat -96px -128px;content:"";
+}
+.span-button button[type=button].btn--chk::before {
+	height:1rem;width:1rem;display:block;
+	background:url('../img/icons_r_list.png') no-repeat -64px -144px;content:"";
 }
 .td-not::before {
 	height:1rem;width:1rem;display:inline-flex;
