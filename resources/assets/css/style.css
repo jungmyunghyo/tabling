@@ -11,19 +11,21 @@ input[type=checkbox]:checked + .label-radio::before {
 }
 .span-form input[type=text] {
 	height:calc(100% - (0.3rem * 2));width:calc(100% - (0.3rem * 2));
-	border:0.2rem solid #E9ECF2;
+	border:0.2rem solid #F0FFF0;
 	cursor:pointer;outline:none;
 	text-align:center;
 }
 .span-form input[type=text]:focus {
+	background-color:#FFEFD5;
 	border-bottom-color:#BF0021;
 }
 .span-value textarea {
 	height:calc(100% - (0.3rem * 2));width:calc(100% - (0.3rem * 2));
-	border:0.2rem solid #E9ECF2;
+	border:0.2rem solid #F0FFF0;
 	cursor:pointer;outline:none;resize:none;
 }
 .span-value textarea:focus {
+	background-color:#FFEFD5;
 	border-bottom-color:#BF0021;
 }
 .span-button button[type=button] {
@@ -33,14 +35,26 @@ input[type=checkbox]:checked + .label-radio::before {
 	justify-content:center;align-items:center;
 }
 .span-button button[type=button].btn--add::before {
-	height:40%;width:40%;display:block;
-	background:url('../img/ico_btn_add.png') no-repeat;background-size:60%;content:"";
+	height:1rem;width:1rem;display:block;
+	background:url('../img/icons_r_list.png') no-repeat -32px -128px;content:"";
+}
+.span-button button[type=button].btn--blk::before {
+	height:1rem;width:1rem;display:block;
+	background:url('../img/icons_r_list.png') no-repeat -16px -144px;content:"";
 }
 .span-button button[type=button].btn--del::before {
-	height:40%;width:40%;display:block;
-	background:url('../img/ico_btn_remove.png') no-repeat;background-size:60%;content:"";
+	height:1rem;width:1rem;display:block;
+	background:url('../img/icons_r_list.png') no-repeat -176px -96px;content:"";
+}
+.span-button button[type=button].btn--rot::before {
+	height:1rem;width:1rem;display:block;
+	background:url('../img/icons_r_list.png') no-repeat -64px -80px;content:"";
 }
 .span-button button[type=button].btn--mod::before {
-	height:40%;width:40%;display:block;
-	background:url('../img/ico_btn_modify.png') no-repeat;background-size:60%;content:"";
+	height:1rem;width:1rem;display:block;
+	background:url('../img/icons_r_list.png') no-repeat -64px -112px;content:"";
+}
+.td-not::before {
+	height:1rem;width:1rem;display:inline-flex;
+	background:url('../img/icons_l_list.png') no-repeat 0 -128px;content:"";
 }

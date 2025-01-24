@@ -6,7 +6,6 @@ $(document).ready(function() {
 			$(".--tooltip-1").css("display", "none");
 		}
 	});
-	fn_info_cnt();
 });
 function fn_tooltip_all() {
 	fn_tooltip2();
@@ -38,7 +37,9 @@ function fn_next(tp) {
 			$("#totFemaleListTxt").focus();
 		} else if (tp == 3) {
 			$("#totMaleListTxt").focus();
+			fn_info_list();
 		} else if (tp == 4) {
+			$("#totFemaleListTxt").focus();
 			fn_info_list();
 		}
 	}
