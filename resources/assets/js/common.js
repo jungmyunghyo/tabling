@@ -1,8 +1,5 @@
 $(document).ready(function() {
 	fn_div_container_add();
-	fn_div_container_add();
-	fn_div_container_add();
-	fn_div_container_add();
 });
 function fn_info_list() {
 	var totFemaleArr = fn_make_arr($("#totFemaleListTxt").val());
@@ -196,10 +193,12 @@ function fn_div_container_add() {
 	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-2 f--5'>상하</button></span>";
 	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-3 f--5'>상단</button></span>";
 	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-4 f--5'>하단</button></span>";
-	html += "		<span class='span-form'><input type='text' class='text-container-add f--10' value='' maxlength='10' placeholder='주석'/></span>";
+	html += "		<span class='span-form'><input type='text' class='text-container-left-add f--10' value='' maxlength='10' placeholder='주석'/></span>";
+	html += "		<span class='span-form'><input type='text' class='text-container-right-add f--10' value='' maxlength='10' placeholder='주석'/></span>";
 	html += "		<span class='span-button'><button type='button' class='btn--blk btn--add-5 f--5'>공백세로</button></span>";
 	html += "		<span class='span-button'><button type='button' class='btn--blk btn--add-6 f--5'>공백상단</button></span>";
 	html += "		<span class='span-button'><button type='button' class='btn--blk btn--add-7 f--5'>공백하단</button></span>";
+	html += "		<span class='span-button'><button type='button' class='btn--blk btn--add-8 f--5'>공백</button></span>";
 	html += "	</div>";
 	html += "	<div class='div-container-item'>"; 
 	html += "	</div>";
@@ -223,10 +222,13 @@ function fn_div_container_reset() {
 	$(".btn--del").each(function(pkIdx) {
 		$(this).attr("onclick", "fn_div_container_del(" + pkIdx + ");");
 	});
-	$(".text-container-add").each(function(pkIdx) {
-		$(this).attr("id", "text-container-add--" + pkIdx);
+	$(".text-container-left-add").each(function(pkIdx) {
+		$(this).attr("id", "text-container-left-add--" + pkIdx);
 	});
-	for (var i=1; i<=7; i++) {
+	$(".text-container-right-add").each(function(pkIdx) {
+		$(this).attr("id", "text-container-right-add--" + pkIdx);
+	});
+	for (var i=1; i<=8; i++) {
 		$(".btn--add-" + i).each(function(pkIdx) {
 			$(this).attr("onclick", "fn_div_container_item_add(" + i + ", " + pkIdx + ");");
 		});
@@ -235,16 +237,22 @@ function fn_div_container_reset() {
 };
 function fn_div_container_item_add(tp, prntIdx) {
 	var html = "";
-	var txt = $("#text-container-add--" + prntIdx).val();
-	$("#text-container-add--" + prntIdx).val("");
-	
+	var txtLeft = $("#text-container-left-add--" + prntIdx).val();
+	var txtRight = $("#text-container-right-add--" + prntIdx).val();
+	$("#text-container-left-add--" + prntIdx).val("");
+	$("#text-container-right-add--" + prntIdx).val("");
+	var txtLeftFlag = fn_is_empty(txtLeft);
+	var txtRightFlag = fn_is_empty(txtRight);
+
 	if (tp == 1 || tp == 5) {
 		html += "<div class='div-container-item--" + prntIdx + " div-container-item-col--m'>";
 		html += "	<table class='table-container-col'>";
 		if (tp == 1) {
 		html += "		<tbody class='table-use table-use-col'></tbody>";
-		} else if (tp == 5 && fn_is_empty(txt) == false) {
-		html += "		<tbody><tr><td><div class='f--l--m'>" + txt + "</div></td></tr></tbody>";	
+		} else if (tp == 5 && (txtLeftFlag == false && txtRightFlag == false)) {
+		html += "		<tbody><tr><td><div class='f--l--m'>" + txtLeft + "</div></td></tr><tr><td><div class='f--l--m'>" + txtRight + "</div></td></tr></tbody>";
+		} else if (tp == 5 && (txtLeftFlag == false || txtRightFlag == false)) {
+		html += "		<tbody><tr><td><div class='f--l--m'>" + txtLeft + txtRight + "</div></td></tr></tbody>";
 		}
 		html += "	</table>";
 		html += "</div>";
@@ -253,15 +261,27 @@ function fn_div_container_item_add(tp, prntIdx) {
 		html += "	<table class='table-container-row'>";
 		if (tp == 2 || tp == 3) {
 		html += "		<tbody class='table-use table-use-row'></tbody>";
-		} else if ((tp == 4 || tp == 6) && fn_is_empty(txt) == false) {
-		html += "		<tbody><tr><td><div class='f--l--m'>" + txt + "</div></td></tr></tbody>";	
+		} else if ((tp == 4 || tp == 6) && (txtLeftFlag == false && txtRightFlag == false)) {
+		html += "		<tbody><tr><td><div class='f--l--m'>" + txtLeft + "</div></td><td><div class='f--l--m'>" + txtRight + "</div></td></tr></tbody>";
+		} else if ((tp == 4 || tp == 6) && (txtLeftFlag == false || txtRightFlag == false)) {
+		html += "		<tbody><tr><td><div class='f--l--m'>" + txtLeft + txtRight + "</div></td></tr></tbody>";
 		}
 		html += "	</table>";
 		html += "	<table class='table-container-row'>";
 		if (tp == 2 || tp == 4) {
 		html += "		<tbody class='table-use table-use-row'></tbody>";
-		} else if ((tp == 3 || tp == 7) && fn_is_empty(txt) == false) {
-		html += "		<tbody><tr><td><div class='f--l--m'>" + txt + "</div></td></tr></tbody>";	
+		} else if ((tp == 3 || tp == 7) && (txtLeftFlag == false && txtRightFlag == false)) {
+		html += "		<tbody><tr><td><div class='f--l--m'>" + txtLeft + "</div></td><td><div class='f--l--m'>" + txtRight + "</div></td></tr></tbody>";
+		} else if ((tp == 3 || tp == 7) && (txtLeftFlag == false || txtRightFlag == false)) {
+		html += "		<tbody><tr><td><div class='f--l--m'>" + txtLeft + txtRight + "</div></td></tr></tbody>";
+		}
+		html += "	</table>";
+		html += "</div>";
+	} else if (tp == 8) {
+		html += "<div class='div-container-item--" + prntIdx + " div-container-item-ext--m'>";
+		html += "	<table class='table-container-ext'>";
+		if (txtLeftFlag == false || txtRightFlag == false) {
+		html += "		<tbody><tr><td><div class='f--l--m'>" + txtLeft + txtRight + "</div></td></tr></tbody>";
 		}
 		html += "	</table>";
 		html += "</div>";
