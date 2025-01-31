@@ -1,81 +1,81 @@
 @media (max-width:699px) {
 	.div-container-item-col--m {
-		height:9rem;width:calc((9rem / 2) - (0.1rem * 1));display:inline-block;
+		height:calc(1.8rem * 4);width:calc(((1.8rem * 5) / 2) - (0.1rem * 1));display:inline-block;
 	}
 	.div-container-item-row--m {
-		height:9rem;width:calc((9rem / 1) - (0.1rem * 1));display:inline-block;
+		height:calc(1.8rem * 4);width:calc(((1.8rem * 5) / 1) - (0.1rem * 1));display:inline-block;
 	}
 }
 @media (min-width:700px) and (max-width:749px) {
 	.div-container-item-col--m {
-		height:10rem;width:calc((10rem / 2) - (0.1rem * 1));display:inline-block;
+		height:calc(2.0rem * 4);width:calc(((2.0rem * 5) / 2) - (0.1rem * 1));display:inline-block;
 	}
 	.div-container-item-row--m {
-		height:10rem;width:calc((10rem / 1) - (0.1rem * 1));display:inline-block;
+		height:calc(2.0rem * 4);width:calc(((2.0rem * 5) / 1) - (0.1rem * 1));display:inline-block;
 	}
 }
 @media (min-width:750px) and (max-width:799px) {
 	.div-container-item-col--m {
-		height:11rem;width:calc((11rem / 2) - (0.1rem * 1));display:inline-block;
+		height:calc(2.2rem * 4);width:calc(((2.2rem * 5) / 2) - (0.1rem * 1));display:inline-block;
 	}
 	.div-container-item-row--m {
-		height:11rem;width:calc((11rem / 1) - (0.1rem * 1));display:inline-block;
+		height:calc(2.2rem * 4);width:calc(((2.2rem * 5) / 1) - (0.1rem * 1));display:inline-block;
 	}
 }
 @media (min-width:800px) and (max-width:849px) {
 	.div-container-item-col--m {
-		height:12rem;width:calc((12rem / 2) - (0.1rem * 1));display:inline-block;
+		height:calc(2.4rem * 4);width:calc(((2.4rem * 5) / 2) - (0.1rem * 1));display:inline-block;
 	}
 	.div-container-item-row--m {
-		height:12rem;width:calc((12rem / 1) - (0.1rem * 1));display:inline-block;
+		height:calc(2.4rem * 4);width:calc(((2.4rem * 5) / 1) - (0.1rem * 1));display:inline-block;
 	}
 }
 @media (min-width:850px) and (max-width:899px) {
 	.div-container-item-col--m {
-		height:13rem;width:calc((13rem / 2) - (0.1rem * 1));display:inline-block;
+		height:calc(2.6rem * 4);width:calc(((2.6rem * 5) / 2) - (0.1rem * 1));display:inline-block;
 	}
 	.div-container-item-row--m {
-		height:13rem;width:calc((13rem / 1) - (0.1rem * 1));display:inline-block;
+		height:calc(2.6rem * 4);width:calc(((2.6rem * 5) / 1) - (0.1rem * 1));display:inline-block;
 	}
 }
 @media (min-width:900px) and (max-width:999px) {
 	.div-container-item-col--m {
-		height:14rem;width:calc((14rem / 2) - (0.1rem * 1));display:inline-block;
+		height:calc(2.8rem * 4);width:calc(((2.8rem * 5) / 2) - (0.1rem * 1));display:inline-block;
 	}
 	.div-container-item-row--m {
-		height:14rem;width:calc((14rem / 1) - (0.1rem * 1));display:inline-block;
+		height:calc(2.8rem * 4);width:calc(((2.8rem * 5) / 1) - (0.1rem * 1));display:inline-block;
 	}
 }
 @media (min-width:1000px) and (max-width:1099px) {
 	.div-container-item-col--m {
-		height:15rem;width:calc((15rem / 2) - (0.1rem * 1));display:inline-block;
+		height:calc(3.0rem * 4);width:calc(((3.0rem * 5) / 2) - (0.1rem * 1));display:inline-block;
 	}
 	.div-container-item-row--m {
-		height:15rem;width:calc((15rem / 1) - (0.1rem * 1));display:inline-block;
+		height:calc(3.0rem * 4);width:calc(((3.0rem * 5) / 1) - (0.1rem * 1));display:inline-block;
 	}
 }
 @media (min-width:1100px) and (max-width:1199px) {
 	.div-container-item-col--m {
-		height:16rem;width:calc((16rem / 2) - (0.1rem * 1));display:inline-block;
+		height:calc(3.2rem * 4);width:calc(((3.2rem * 5) / 2) - (0.1rem * 1));display:inline-block;
 	}
 	.div-container-item-row--m {
-		height:16rem;width:calc((16rem / 1) - (0.1rem * 1));display:inline-block;
+		height:calc(3.2rem * 4);width:calc(((3.2rem * 5) / 1) - (0.1rem * 1));display:inline-block;
 	}
 }
 @media (min-width:1200px) and (max-width:1299px) {
 	.div-container-item-col--m {
-		height:17rem;width:calc((17rem / 2) - (0.1rem * 1));display:inline-block;
+		height:calc(3.4rem * 4);width:calc(((3.4rem * 5) / 2) - (0.1rem * 1));display:inline-block;
 	}
 	.div-container-item-row--m {
-		height:17rem;width:calc((17rem / 1) - (0.1rem * 1));display:inline-block;
+		height:calc(3.4rem * 4);width:calc(((3.4rem * 5) / 1) - (0.1rem * 1));display:inline-block;
 	}
 }
 @media (min-width:1300px) {
 	.div-container-item-col--m {
-		height:18rem;width:calc((18rem / 2) - (0.1rem * 1));display:inline-block;
+		height:calc(3.6rem * 4);width:calc(((3.6rem * 5) / 2) - (0.1rem * 1));display:inline-block;
 	}
 	.div-container-item-row--m {
-		height:18rem;width:calc((18rem / 1) - (0.1rem * 1));display:inline-block;
+		height:calc(3.6rem * 4);width:calc(((3.6rem * 5) / 1) - (0.1rem * 1));display:inline-block;
 	}
 }
 @media (max-width:899px) {

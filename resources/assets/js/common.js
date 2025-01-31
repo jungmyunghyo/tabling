@@ -1,5 +1,8 @@
 $(document).ready(function() {
 	fn_div_container_add();
+	fn_div_container_add();
+	fn_div_container_add();
+	fn_div_container_add();
 });
 function fn_info_list() {
 	var totFemaleArr = fn_make_arr($("#totFemaleListTxt").val());

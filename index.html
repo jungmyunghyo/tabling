@@ -27,9 +27,9 @@
 		<section class="section-container --tooltip-1">
 			<div class="div-setting-container">
 				<span class="span-title f--10">여자수</span>
-				<span class="span-form"><input type="text" id="totFemaleUsrCnt" class="f--10" value="25" maxlength="99" placeholder="여자" onchange="fn_set_num(this);fn_info_cnt();" onkeyup="fn_next(1);"/></span>
+				<span class="span-form"><input type="text" id="totFemaleUsrCnt" class="f--10" value="40" maxlength="99" placeholder="여자" onchange="fn_set_num(this);fn_info_cnt();" onkeyup="fn_next(1);"/></span>
 				<span class="span-title f--10">남자수</span>
-				<span class="span-form"><input type="text" id="totMaleUsrCnt" class="f--10" value="35" maxlength="99" placeholder="남자" onchange="fn_set_num(this);fn_info_cnt();" onkeyup="fn_next(2);"/></span>
+				<span class="span-form"><input type="text" id="totMaleUsrCnt" class="f--10" value="40" maxlength="99" placeholder="남자" onchange="fn_set_num(this);fn_info_cnt();" onkeyup="fn_next(2);"/></span>
 				<span class="span-button --tooltip-2"><button type="button" class="btn--add f--5" onclick="fn_div_container_add();">행추가</button></span>
 				<span class="span-title f--10">장소</span>
 				<span class="span-button"><button type="button" class="btn--inf f--5" onclick="fn_place_pop(1);">찾기</button></span>
@@ -67,7 +67,7 @@
 		<section class="section-container">
 			<div id="div-pop-place" class="div-pop">
 				<div class="div-pop-container-header">
-					<span class="span-button"><button type="button" class="btn--cls" onclick="fn_place_pop(0);"></button></span>
+					<span class="span-button"><button type="button" class="btn--cls f--5" onclick="fn_place_pop(0);">닫기</button></span>
 				</div>
 				<div class="div-pop-container-body">
 					<ul class="ul-pop-container">
@@ -91,6 +91,52 @@
 							<span class="span-button"><button type="button" class="btn--chk f--5" onclick="fn_place_set(3, 70);">70</button></span>
 							<span class="span-button"><button type="button" class="btn--chk f--5" onclick="fn_place_set(3, 80);">80</button></span>
 							<span class="span-button"><button type="button" class="btn--chk f--5" onclick="fn_place_set(3, 90);">90</button></span>
+						</li>
+						<li class="li-pop-container">
+							<span class="span-title f--6 c--gray">봉천로280</span>
+							<span class="span-button"><button type="button" class="btn--chk f--5" onclick="fn_place_set(4, 40);">40</button></span>
+						</li>
+						<li class="li-pop-container">
+							<span class="span-title f--6 c--gray">도영로66</span>
+							<span class="span-button"><button type="button" class="btn--chk f--5" onclick="fn_place_set(5, 14);">14</button></span>
+						</li>
+						<li class="li-pop-container">
+							<span class="span-title f--6 c--gray">경인로875-1</span>
+							<span class="span-button"><button type="button" class="btn--chk f--5" onclick="fn_place_set(6, 60);">60</button></span>
+						</li>
+						<li class="li-pop-container">
+							<span class="span-title f--6 c--gray">당산로50길31</span>
+							<span class="span-button"><button type="button" class="btn--chk f--5" onclick="fn_place_set(7, 60);">60</button></span>
+							<span class="span-button"><button type="button" class="btn--chk f--5" onclick="fn_place_set(7, 70);">70</button></span>
+							<span class="span-button"><button type="button" class="btn--chk f--5" onclick="fn_place_set(7, 80);">80</button></span>
+						</li>
+						<li class="li-pop-container">
+							<span class="span-title f--6 c--gray">연희로39</span>
+							<span class="span-button"><button type="button" class="btn--chk f--5" onclick="fn_place_set(8, 60);">60</button></span>
+						</li>
+						<li class="li-pop-container">
+							<span class="span-title f--6 c--gray">잔다리로65</span>
+							<span class="span-button"><button type="button" class="btn--chk f--5" onclick="fn_place_set(9, 18);">18</button></span>
+						</li>
+						<li class="li-pop-container">
+							<span class="span-title f--6 c--gray">도화길33</span>
+							<span class="span-button"><button type="button" class="btn--chk f--5" onclick="fn_place_set(10, 60);">60</button></span>
+						</li>
+						<li class="li-pop-container">
+							<span class="span-title f--6 c--gray">충무로46-1</span>
+							<span class="span-button"><button type="button" class="btn--chk f--5" onclick="fn_place_set(11, 24);">24</button></span>
+						</li>
+						<li class="li-pop-container">
+							<span class="span-title f--6 c--gray">마른내로4길19</span>
+							<span class="span-button"><button type="button" class="btn--chk f--5" onclick="fn_place_set(12, 16);">16</button></span>
+						</li>
+						<li class="li-pop-container">
+							<span class="span-title f--6 c--gray">퇴계로45길2</span>
+							<span class="span-button"><button type="button" class="btn--chk f--5" onclick="fn_place_set(13, 80);">80</button></span>
+						</li>
+						<li class="li-pop-container">
+							<span class="span-title f--6 c--gray">연희로1길22</span>
+							<span class="span-button"><button type="button" class="btn--chk f--5" onclick="fn_place_set(14, 40);">40</button></span>
 						</li>
 					</ul>
 				</div>
