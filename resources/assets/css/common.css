@@ -54,6 +54,7 @@
 	table-layout:fixed;
 }
 td {
+	height:calc(1.5rem - (0.1rem * 2));width:calc(1.5rem - (0.1rem * 2));
 	border:0.1rem solid #E9ECF2;
 	text-align:center;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;
 }
