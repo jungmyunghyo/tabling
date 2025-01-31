@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	fn_div_container_add();
+	fn_place_set(3, 90);
 });
 function fn_info_list() {
 	var totFemaleArr = fn_make_arr($("#totFemaleListTxt").val());
@@ -107,21 +108,21 @@ function fn_info_table_assign() {
 		for (var x=1; x<=totCnt; x++) {
 			if (fn_position_flag(totCnt, fCnt, mCnt, x) == false) {
 				$(this).find(".td-use-" + x).addClass("td-use-f");
-				$(this).find(".td-use-" + x).append("<div class='--tooltip-1 f6-g'>i:" + x + "</div>");
-				$(this).find(".td-use-" + x).append("<div class='f6'>" + tbFemaleArr[fIdxStrt] +"</div>");
+				$(this).find(".td-use-" + x).append("<div class='--tooltip-1 f--m--m c--gray'>i:" + x + "</div>");
+				$(this).find(".td-use-" + x).append("<div class='f--m--m'>" + tbFemaleArr[fIdxStrt] +"</div>");
 				fIdxStrt++;
 			} else {
 				$(this).find(".td-use-" + x).addClass("td-use-m");
-				$(this).find(".td-use-" + x).append("<div class='--tooltip-1 f6-g'>i:" + x + "</div>");
-				$(this).find(".td-use-" + x).append("<div class='f6'>" + tbMaleArr[mIdxStrt] +"</div>");
+				$(this).find(".td-use-" + x).append("<div class='--tooltip-1 f--m--m c--gray'>i:" + x + "</div>");
+				$(this).find(".td-use-" + x).append("<div class='f--m--m'>" + tbMaleArr[mIdxStrt] +"</div>");
 				mIdxStrt++;
 			}
 		}
-		$(this).find(".td-sum").append("<div class='f10'>" + (idx + 1) +"조</div>");
-		$(this).find(".td-sum").append("<div class='--tooltip-1 f6-g'>tCnt:" + totCnt + "</div>");
-		$(this).find(".td-sum").append("<div class='--tooltip-1 f6-g'>fCnt:" + fCnt + "/" + "mCnt:" + mCnt + "</div>");
-		$(this).find(".td-sum").append("<div class='--tooltip-1 f5-g'>fArr:" + tbFemaleArr + "</div>");
-		$(this).find(".td-sum").append("<div class='--tooltip-1 f5-g'>mArr:" + tbMaleArr + "</div>");
+		$(this).find(".td-sum").append("<div class='f--l--m'>" + (idx + 1) +"조</div>");
+		$(this).find(".td-sum").append("<div class='--tooltip-1 f--m--m c--gray'>tCnt:" + totCnt + "</div>");
+		$(this).find(".td-sum").append("<div class='--tooltip-1 f--m--m c--gray'>fCnt:" + fCnt + "/" + "mCnt:" + mCnt + "</div>");
+		$(this).find(".td-sum").append("<div class='--tooltip-1 f--s--m c--gray'>fArr:" + tbFemaleArr + "</div>");
+		$(this).find(".td-sum").append("<div class='--tooltip-1 f--s--m c--gray'>mArr:" + tbMaleArr + "</div>");
 	});
 };
 function fn_tmp(tp, sz) {
@@ -188,15 +189,15 @@ function fn_div_container_add() {
 	var html = "";
 	html += "<div class='div-container-container'>";
 	html += "	<div class='div-setting-container --tooltip-1'>";
-	html += "		<span class='span-button'><button type='button' class='btn--del f5'>행삭제</button></span>";
-	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-1 f5'>세로</button></span>";
-	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-2 f5'>상하</button></span>";
-	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-3 f5'>상단</button></span>";
-	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-4 f5'>하단</button></span>";
-	html += "		<span class='span-form'><input type='text' class='text-container-add f10' value='' maxlength='10' placeholder='주석'/></span>";
-	html += "		<span class='span-button'><button type='button' class='btn--blk btn--add-5 f5'>공백세로</button></span>";
-	html += "		<span class='span-button'><button type='button' class='btn--blk btn--add-6 f5'>공백상단</button></span>";
-	html += "		<span class='span-button'><button type='button' class='btn--blk btn--add-7 f5'>공백하단</button></span>";
+	html += "		<span class='span-button'><button type='button' class='btn--del f--5'>행삭제</button></span>";
+	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-1 f--5'>세로</button></span>";
+	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-2 f--5'>상하</button></span>";
+	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-3 f--5'>상단</button></span>";
+	html += "		<span class='span-button'><button type='button' class='btn--add btn--add-4 f--5'>하단</button></span>";
+	html += "		<span class='span-form'><input type='text' class='text-container-add f--10' value='' maxlength='10' placeholder='주석'/></span>";
+	html += "		<span class='span-button'><button type='button' class='btn--blk btn--add-5 f--5'>공백세로</button></span>";
+	html += "		<span class='span-button'><button type='button' class='btn--blk btn--add-6 f--5'>공백상단</button></span>";
+	html += "		<span class='span-button'><button type='button' class='btn--blk btn--add-7 f--5'>공백하단</button></span>";
 	html += "	</div>";
 	html += "	<div class='div-container-item'>"; 
 	html += "	</div>";
@@ -241,7 +242,7 @@ function fn_div_container_item_add(tp, prntIdx) {
 		if (tp == 1) {
 		html += "		<tbody class='table-use table-use-col'></tbody>";
 		} else if (tp == 5 && fn_is_empty(txt) == false) {
-		html += "		<tbody><tr><td><div class='f10'>" + txt + "</div></td></tr></tbody>";	
+		html += "		<tbody><tr><td><div class='f--l--m'>" + txt + "</div></td></tr></tbody>";	
 		}
 		html += "	</table>";
 		html += "</div>";
@@ -251,14 +252,14 @@ function fn_div_container_item_add(tp, prntIdx) {
 		if (tp == 2 || tp == 3) {
 		html += "		<tbody class='table-use table-use-row'></tbody>";
 		} else if ((tp == 4 || tp == 6) && fn_is_empty(txt) == false) {
-		html += "		<tbody><tr><td><div class='f10'>" + txt + "</div></td></tr></tbody>";	
+		html += "		<tbody><tr><td><div class='f--l--m'>" + txt + "</div></td></tr></tbody>";	
 		}
 		html += "	</table>";
 		html += "	<table class='table-container-row'>";
 		if (tp == 2 || tp == 4) {
 		html += "		<tbody class='table-use table-use-row'></tbody>";
 		} else if ((tp == 3 || tp == 7) && fn_is_empty(txt) == false) {
-		html += "		<tbody><tr><td><div class='f10'>" + txt + "</div></td></tr></tbody>";	
+		html += "		<tbody><tr><td><div class='f--l--m'>" + txt + "</div></td></tr></tbody>";	
 		}
 		html += "	</table>";
 		html += "</div>";

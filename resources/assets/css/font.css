@@ -1,21 +1,12 @@
-.f5 {
+.f--5 {
 	font-size:0.5rem;font-weight:400;
 }
-.f5-g {
-	font-size:0.4rem;font-weight:400;color:#7E8CA0;
-}
-.f6 {
+.f--6 {
 	font-size:0.6rem;font-weight:400;
 }
-.f6-g {
-	font-size:0.6rem;font-weight:400;color:#7E8CA0;
-}
-.f7 {
-	font-size:0.7rem;font-weight:400;
-}
-.f8 {
-	font-size:0.8rem;font-weight:500;
-}
-.f10 {
+.f--10 {
 	font-size:1.0rem;font-weight:600;
+}
+.c--gray {
+	color:#7E8CA0;
 }
