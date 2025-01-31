@@ -51,6 +51,9 @@
 td {
 	text-align:center;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;
 }
+.td-use {
+	background-color:#F0FFF0;
+}
 .td-use-m {
 	background-color:#C0FFFF;
 }

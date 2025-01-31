@@ -1,6 +1,5 @@
 $(document).ready(function() {
 	fn_div_container_add();
-	fn_place_set(3, 90);
 });
 function fn_info_list() {
 	var totFemaleArr = fn_make_arr($("#totFemaleListTxt").val());
@@ -148,39 +147,39 @@ function fn_tmp(tp, sz) {
 	var html = "";
 	if (tp == 1) {
 		if (sz == 11 || sz == 12) {
-			html += "<tr>" + html11		+ html04	+ html05	+ html000	+ "</tr>";
-			html += "<tr>" + html03		+ html023	+ ""		+ html06	+ "</tr>";
-			html += "<tr>" + html02		+ ""		+ ""		+ html07	+ "</tr>";
-			html += "<tr>" + html01		+ ""		+ ""		+ html08	+ "</tr>";
-			html += "<tr>" + html000	+ html10	+ html09	+ html12	+ "</tr>";
+			html += "<tr>" + html000	+ html08	+ html10	+ html12	+ "</tr>";
+			html += "<tr>" + html05		+ html023	+ ""		+ html06	+ "</tr>";
+			html += "<tr>" + html03		+ ""		+ ""		+ html04	+ "</tr>";
+			html += "<tr>" + html01		+ ""		+ ""		+ html02	+ "</tr>";
+			html += "<tr>" + html11		+ html07	+ html09	+ html000	+ "</tr>";
 		} else if (sz == 9 || sz == 10) {
-			html += "<tr>" + html000	+ html04	+ html05	+ html000	+ "</tr>";
-			html += "<tr>" + html03		+ html023	+ ""		+ html06	+ "</tr>";
-			html += "<tr>" + html02		+ ""		+ ""		+ html07	+ "</tr>";
-			html += "<tr>" + html01		+ ""		+ ""		+ html08	+ "</tr>";
-			html += "<tr>" + html000	+ html10	+ html09	+ html000	+ "</tr>";
+			html += "<tr>" + html000	+ html08	+ html10	+ html000	+ "</tr>";
+			html += "<tr>" + html05		+ html023	+ ""		+ html06	+ "</tr>";
+			html += "<tr>" + html03		+ ""		+ ""		+ html04	+ "</tr>";
+			html += "<tr>" + html01		+ ""		+ ""		+ html02	+ "</tr>";
+			html += "<tr>" + html000	+ html07	+ html09	+ html000	+ "</tr>";
 		} else if (sz == 7 || sz == 8) {
-			html += "<tr>" + html000	+ html04	+ html000	+ "</tr>";
-			html += "<tr>" + html03		+ html013	+ html05	+ "</tr>";
-			html += "<tr>" + html02		+ ""		+ html06	+ "</tr>";
-			html += "<tr>" + html01		+ ""		+ html07	+ "</tr>";
 			html += "<tr>" + html000	+ html08	+ html000	+ "</tr>";
+			html += "<tr>" + html05		+ html013	+ html06	+ "</tr>";
+			html += "<tr>" + html03		+ ""		+ html04	+ "</tr>";
+			html += "<tr>" + html01		+ ""		+ html02	+ "</tr>";
+			html += "<tr>" + html000	+ html07	+ html000	+ "</tr>";
 		}
 	} else if (tp == 2) {
 		if (sz == 11 || sz == 12) {
-			html += "<tr>" + html000	+ html01	+ html02	+ html03	+ html11	+ "</tr>";
-			html += "<tr>" + html10		+ html032	+ ""		+ ""		+ html04	+ "</tr>";
-			html += "<tr>" + html09		+ ""		+ ""		+ ""		+ html05	+ "</tr>";
-			html += "<tr>" + html12		+ html08	+ html07	+ html06	+ html000	+ "</tr>";
+			html += "<tr>" + html11		+ html01	+ html03	+ html05	+ html000	+ "</tr>";
+			html += "<tr>" + html07		+ html032	+ ""		+ ""		+ html08	+ "</tr>";
+			html += "<tr>" + html09		+ ""		+ ""		+ ""		+ html10	+ "</tr>";
+			html += "<tr>" + html000	+ html02	+ html04	+ html06	+ html12	+ "</tr>";
 		} else if (sz == 9 || sz == 10) {
-			html += "<tr>" + html000	+ html01	+ html02	+ html03	+ html000	+ "</tr>";
-			html += "<tr>" + html10		+ html032	+ ""		+ ""		+ html04	+ "</tr>";
-			html += "<tr>" + html09		+ ""		+ ""		+ ""		+ html05	+ "</tr>";
-			html += "<tr>" + html000	+ html08	+ html07	+ html06	+ html000	+ "</tr>";
+			html += "<tr>" + html000	+ html01	+ html03	+ html05	+ html000	+ "</tr>";
+			html += "<tr>" + html07		+ html032	+ ""		+ ""		+ html08	+ "</tr>";
+			html += "<tr>" + html09		+ ""		+ ""		+ ""		+ html10	+ "</tr>";
+			html += "<tr>" + html000	+ html02	+ html04	+ html06	+ html000	+ "</tr>";
 		} else if (sz == 7 || sz == 8) {
-			html += "<tr>" + html000	+ html01	+ html02	+ html03	+ html000	+ "</tr>";
-			html += "<tr>" + html08		+ html031	+ ""		+ ""		+ html04	+ "</tr>";
-			html += "<tr>" + html000	+ html07	+ html06	+ html05	+ html000	+ "</tr>";
+			html += "<tr>" + html000	+ html01	+ html03	+ html05	+ html000	+ "</tr>";
+			html += "<tr>" + html07		+ html031	+ ""		+ ""		+ html08	+ "</tr>";
+			html += "<tr>" + html000	+ html02	+ html04	+ html06	+ html000	+ "</tr>";
 		}
 	}
 	return html;
