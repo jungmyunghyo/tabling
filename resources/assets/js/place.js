@@ -1,12 +1,3 @@
-function fn_place_pop(tp) {
-	if (tp == 0) {
-		$("#div-dim-bg").removeClass("div-dim-bg--active");
-		$("#div-pop-place").removeClass("div-pop--active");
-	} else {
-		$("#div-dim-bg").addClass("div-dim-bg--active");
-		$("#div-pop-place").addClass("div-pop--active");
-	}
-};
 function fn_place_set(tp, sz) {
 	$("#div-container").empty();
 	$("#totFemaleUsrCnt").val(Number(sz / 2));

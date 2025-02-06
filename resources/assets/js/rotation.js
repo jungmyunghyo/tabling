@@ -46,3 +46,8 @@ function fn_rotation(tp) {
 	}
 	fn_info_table_assign();
 };
+function fn_rotation_sz(tp, sz) {
+	for (var i=0; i<sz; i++) {
+		fn_rotation(tp);
+	}
+};
