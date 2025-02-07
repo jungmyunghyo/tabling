@@ -9,7 +9,6 @@
 		<link rel="stylesheet" type="text/css" href="resources/assets/css/style.css"/>
 		<link rel="stylesheet" type="text/css" href="resources/assets/css/font.css"/>
 		<link rel="stylesheet" type="text/css" href="resources/assets/css/media.css"/>
-		<link rel="stylesheet" type="text/css" href="resources/assets/css/roulette.css"/>
 		<script type="text/javascript" src="resources/assets/js/valid.js"></script>
 		<script type="text/javascript" src="resources/assets/js/common.js"></script>
 		<script type="text/javascript" src="resources/assets/js/position.js"></script>
@@ -29,9 +28,9 @@
 		<section class="section-container --tooltip-1">
 			<div class="div-setting-container">
 				<span class="span-title f--10">여자수</span>
-				<span class="span-form"><input type="text" id="totFemaleUsrCnt" class="f--10" value="25" maxlength="3" placeholder="여자" onchange="fn_set_num(this);fn_info_cnt();" onkeyup="fn_next(1);"/></span>
+				<span class="span-form"><input type="text" id="totFemaleUsrCnt" class="f--10" value="0" maxlength="3" placeholder="여자" onchange="fn_set_num(this);fn_info_cnt();" onkeyup="fn_next(1);"/></span>
 				<span class="span-title f--10">남자수</span>
-				<span class="span-form"><input type="text" id="totMaleUsrCnt" class="f--10" value="25" maxlength="3" placeholder="남자" onchange="fn_set_num(this);fn_info_cnt();" onkeyup="fn_next(2);"/></span>
+				<span class="span-form"><input type="text" id="totMaleUsrCnt" class="f--10" value="0" maxlength="3" placeholder="남자" onchange="fn_set_num(this);fn_info_cnt();" onkeyup="fn_next(2);"/></span>
 				<span class="span-button --tooltip-2"><button type="button" class="btn--add f--5" onclick="fn_div_container_add();">행추가</button></span>
 				<span class="span-title f--10">장소</span>
 				<span class="span-button"><button type="button" class="btn--inf f--5" onclick="fn_place_pop(1);">찾기</button></span>
@@ -50,13 +49,13 @@
 				<span class="span-value"><textarea id="totMaleListTxt" class="f--6 c--gray" onkeyup="fn_next(4);"></textarea></span>
 			</div>
 		</section>
-		<section class="section-container --tooltip-2">
+		<section class="section-container --tooltip-3">
 			<div class="div-setting-container">
-				<span class="span-button --tooltip-2"><button type="button" class="btn--rot f--5" onclick="fn_rotation_all();">무작위</button></span>
-				<span class="span-button --tooltip-2f"><button type="button" class="btn--rot f--5" onclick="fn_rotation(0);">여자</button></span>
-				<span class="span-button --tooltip-2m"><button type="button" class="btn--rot f--5" onclick="fn_rotation(1);">남자</button></span>
-				<span class="span-button --tooltip-2f"><button type="button" class="btn--rot f--5" onclick="fn_open_table_roulette(1);">여자룰렛</button></span>
-				<span class="span-button --tooltip-2f"><button type="button" class="btn--rot f--5" onclick="fn_open_table_roulette(2);">남자룰렛</button></span>
+				<span class="span-button --tooltip-3"><button type="button" class="btn--rot f--5" onclick="fn_rotation_all();">무작위</button></span>
+				<span class="span-button --tooltip-3f"><button type="button" class="btn--rot f--5" onclick="fn_rotation(0);">여자</button></span>
+				<span class="span-button --tooltip-3m"><button type="button" class="btn--rot f--5" onclick="fn_rotation(1);">남자</button></span>
+				<span class="span-button --tooltip-4f"><button type="button" class="btn--rot f--5" onclick="fn_open_table_roulette(1);">여자룰렛</button></span>
+				<span class="span-button --tooltip-4m"><button type="button" class="btn--rot f--5" onclick="fn_open_table_roulette(2);">남자룰렛</button></span>
 			</div>
 		</section>
 		<section class="section-container">
@@ -69,15 +68,38 @@
 			<div id="div-container" class="div-container"></div>
 		</section>
 		<section class="section-container">
-			<div id="div-pop-roulette" class="div-pop">
+			<div id="div-pop-table-function" class="div-pop">
 				<div class="div-pop-container-header">
-					<span class="span-button"><button type="button" class="btn--cls btn-roulette--cls f--5" onclick="fn_open_table_roulette(0);">닫기</button></span>
-					<span class="span-button"><button type="button" class="btn--rot btn--roulette--strt f--5">시작</button></span>
+					<span class="span-button"><button type="button" class="btn--cls f--5" onclick="fn_open_table_function(999, 999);">닫기</button></span>
+					<span class="span-button"><button type="button" id="btn--table--del" class="btn--del f--5">삭제</button></span>
+				</div>
+				<div class="div-pop-container-header">
+					<span class="span-button span--table--sel--0"><button type="button" id="btn--table--sel--0" class="btn--rot f--5"></button></span>
+					<span class="span-button span--table--sel--1"><button type="button" id="btn--table--sel--1" class="btn--rot f--5"></button></span>
+				</div>
+			</div>
+			<div id="div-pop-user-roulette" class="div-pop">
+				<div class="div-pop-container-header">
+					<span class="span-button"><button type="button" id="btn--user-roulette--cls" class="btn--cls f--5" onclick="fn_open_user_roulette(0, '');">닫기</button></span>
+					<span class="span-button"><button type="button" id="btn--user-roulette--strt" class="btn--rot f--5" onclick="fn_make_user_roulette(9999);fn_rotate_user_roulette();">시작</button></span>
 				</div>
 				<div class="div-pop-container-body">
 					<div class="div-roulette">
 						<div class="div-roulette-bg">
-							<canvas class="canvas-roulette-rotate" width="360" height="360"></canvas>
+							<canvas id="canvas-user-roulette" class="canvas-roulette-rotate" width="360" height="360"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="div-pop-table-roulette" class="div-pop">
+				<div class="div-pop-container-header">
+					<span class="span-button"><button type="button" id="btn--table-roulette--cls" class="btn--cls f--5" onclick="fn_open_table_roulette(0);">닫기</button></span>
+					<span class="span-button"><button type="button" id="btn--table-roulette--strt" class="btn--rot f--5">시작</button></span>
+				</div>
+				<div class="div-pop-container-body">
+					<div class="div-roulette">
+						<div class="div-roulette-bg">
+							<canvas id="canvas-table-roulette" class="canvas-roulette-rotate" width="360" height="360"></canvas>
 						</div>
 					</div>
 				</div>

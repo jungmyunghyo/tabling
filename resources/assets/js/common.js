@@ -1,5 +1,4 @@
 $(document).ready(function() {
-	fn_div_container_add();
 });
 function fn_info_list() {
 	var totFemaleArr = fn_make_arr($("#totFemaleListTxt").val());
@@ -293,12 +292,13 @@ function fn_div_container_item_del(prntIdx, pkIdx) {
 	if (confirm("해당 테이블을\n삭제하시겠습니까?") == true) {
 		$("#div-container-item--" + prntIdx + "--" + pkIdx).remove();
 		fn_div_container_item_reset(prntIdx);
+		fn_open_table_function(999, 999);
 	}
 };
 function fn_div_container_item_reset(prntIdx) {
 	$(".div-container-item--" + prntIdx).each(function(pkIdx) {
 		$(this).attr("id", "div-container-item--" + prntIdx + "--" + pkIdx);
-		$(this).attr("onclick", "fn_div_container_item_del(" + prntIdx + "," + pkIdx + ");");
+		$(this).attr("onclick", "fn_open_table_function(" + prntIdx + "," + pkIdx + ");");
 	});
 	fn_info_cnt();
 };
