@@ -128,7 +128,7 @@ function fn_make_user_roulette(ran) {
 		canvas_ctx.restore();
 	}
 };
-function fn_rotate_user_roulette(tp) {
+function fn_rotate_user_roulette() {
 	$("#btn--user-roulette--cls").attr("disabled", true);
 	$("#btn--user-roulette--strt").attr("disabled", true);
 	var canvas = document.querySelector("#canvas-user-roulette");
@@ -141,6 +141,5 @@ function fn_rotate_user_roulette(tp) {
 	var rotate = (360 - (arc * (ran + 1)) + 3600) + (arc / 3);
 	canvas.style.transform = "rotate(" + rotate + "deg)";
 	canvas.style.transition = "2000ms";
-	fn_rotation_sz((tp - 1), (ran + 1));
 	setTimeout(() => fn_make_user_roulette((ran + 1)), 2000);
 };
