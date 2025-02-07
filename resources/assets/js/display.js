@@ -53,14 +53,14 @@ function fn_place_pop(tp) {
 		$("#div-pop-place").addClass("div-pop--active");
 	}
 };
-function fn_open_roulette(tp) {
+function fn_open_table_roulette(tp) {
 	if (tp == 0) {
 		$("#div-dim-bg").removeClass("div-dim-bg--active");
 		$("#div-pop-roulette").removeClass("div-pop--active");
 	} else {
 		$("#div-dim-bg").addClass("div-dim-bg--active");
 		$("#div-pop-roulette").addClass("div-pop--active");
-		fn_make_roulette(tp);
-		$(".btn--roulette--strt").attr("onclick", "fn_rotate_roulette(" + tp + ");");
+		fn_make_table_roulette(tp, 9999);
+		$(".btn--roulette--strt").attr("onclick", "fn_rotate_table_roulette(" + tp + ");");
 	}
 };
